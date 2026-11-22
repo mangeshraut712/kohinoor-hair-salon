@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from 'next';
+import { Fraunces, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { SALON_INFO, SITE_URL } from '@/data/salon';
+
+const fraunces = Fraunces({ subsets: ['latin'], display: 'swap', variable: '--font-fraunces' });
+const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], display: 'swap', variable: '--font-jakarta' });
 
 const description =
   'Men’s hair and skin grooming at The Kohinoor AC Salon, Shivaji Chowk, Sharda Colony, Pimple Nilakh, Pune 411027. Rated 4.5 from 49 Google reviews.';
@@ -68,7 +72,6 @@ function buildJsonLd() {
       reviewCount: SALON_INFO.google.reviewCount,
       bestRating: 5,
     },
-    founder: { '@type': 'Person', name: SALON_INFO.owner.name, sameAs: SALON_INFO.owner.instagramUrl },
     sameAs: [SALON_INFO.instagram.url, SALON_INFO.google.listingUrl],
   };
   if (SALON_INFO.phone) ld.telephone = `+${SALON_INFO.phone.replace(/\D/g, '')}`;
@@ -82,7 +85,7 @@ export default function RootLayout({
 }>) {
   const json = JSON.stringify(buildJsonLd()).replace(/</g, '\\u003c');
   return (
-    <html lang="en-IN">
+    <html lang="en-IN" className={`${fraunces.variable} ${jakarta.variable}`}>
       <body className="antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json }} />
         {children}

@@ -9,8 +9,8 @@
   --oxblood-dark: #420C14;
   --oxblood-border: #7E2C36;
   --rule: #D7CBB9;
-  --font-display: Fraunces, "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-body: "Plus Jakarta Sans", "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-fraunces), Fraunces, "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: var(--font-jakarta), "Plus Jakarta Sans", "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 

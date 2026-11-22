@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { DAYS, SALON_INFO, SERVICE_BOARD, TIME_SLOTS } from '@/data/salon';
 import { buildInquiryMessage, buildWhatsAppLink } from '@/lib/whatsapp';
 
-const SERVICES = SERVICE_BOARD.flatMap((c) => c.items.map((i) => i.name));
+const SERVICES = SERVICE_BOARD.map((c) => c.title);
 
 export function AppointmentInquiry() {
   const [form, setForm] = useState({

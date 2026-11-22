@@ -69,29 +69,25 @@ export const SERVICE_BOARD: ServiceCategory[] = [
   {
     id: 'hair',
     title: 'Hair & Cuts',
-    blurb: 'Men’s haircuts and hair styling by Sagar Kale.',
+    blurb: 'Men’s hair, the first half of the shop’s “Hair | Skin” focus. Specific services are confirmed at the shop.',
     items: [
-      { name: 'Haircut', priceInr: null },
-      { name: 'Hair styling', priceInr: null },
-      { name: 'Hair colour', priceInr: null },
+      { name: 'Hair', priceInr: null },
     ],
   },
   {
     id: 'beard',
     title: 'Beard & Shave',
-    blurb: 'Beard trim, shaping and clean shave.',
+    blurb: 'Beard and shave. Specific services are confirmed at the shop.',
     items: [
-      { name: 'Beard trim & shaping', priceInr: null },
-      { name: 'Shave', priceInr: null },
+      { name: 'Beard & Shave', priceInr: null },
     ],
   },
   {
     id: 'skin',
     title: 'Skin & Grooming',
-    blurb: 'Skin care and grooming, matching the shop’s “Hair | Skin” focus.',
+    blurb: 'Skin, the second half of the shop’s “Hair | Skin” focus. Specific services are confirmed at the shop.',
     items: [
-      { name: 'Facial & skin care', priceInr: null },
-      { name: 'Grooming add-ons', priceInr: null },
+      { name: 'Skin', priceInr: null },
     ],
   },
 ];

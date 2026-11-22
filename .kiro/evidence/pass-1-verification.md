@@ -19,3 +19,11 @@ What `tests/site.test.mjs` checks:
 Not verified: visual rendering in a browser at mobile and desktop widths.
 
 Pending owner (still `null`, per CONTENT.md): phone/WhatsApp, ₹ menu, hero photo, staff, review quotes.
+
+## Pass 2: task 9 (PR #1 review findings)
+- Fonts: `Fraunces` and `Plus_Jakarta_Sans` via `next/font/google` (`display: 'swap'`), wired to `--font-display` / `--font-body`.
+- JSON-LD: `founder` removed.
+- Service board and inquiry dropdown: only `Hair & Cuts`, `Beard & Shave`, `Skin & Grooming` (items Hair, Beard & Shave, Skin). No invented sub-items.
+- Mobile menu closes on link click; dropdown capped at `max-h-[calc(100dvh-8.5rem)]` with scroll.
+- Instagram cards hover `#FFFDF8`; added reel/photo embed slot note pending owner permission.
+- `npm run lint`, `npm run type-check`, `npm run build:cloudflare`, `npm test` (13/13): all exit 0.

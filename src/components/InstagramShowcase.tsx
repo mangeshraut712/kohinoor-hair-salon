@@ -17,7 +17,7 @@ export function InstagramShowcase() {
             href={instagram.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block border border-oxblood-line bg-cream p-6 hover:bg-white"
+            className="block border border-oxblood-line bg-cream p-6 hover:bg-[#FFFDF8]"
           >
             <p className="eyebrow">Shop</p>
             <p className="mt-2 font-display text-2xl font-bold text-oxblood">{instagram.handle}</p>
@@ -30,13 +30,23 @@ export function InstagramShowcase() {
             href={owner.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="block border border-oxblood-line bg-cream p-6 hover:bg-white"
+            className="block border border-oxblood-line bg-cream p-6 hover:bg-[#FFFDF8]"
           >
             <p className="eyebrow">Owner</p>
             <p className="mt-2 font-display text-2xl font-bold text-oxblood">{owner.handle}</p>
             <p className="tabular mt-2 text-sm text-muted">{owner.name}</p>
             <p className="mt-4 font-semibold underline underline-offset-2">Visit profile</p>
           </a>
+        </div>
+        <div
+          role="note"
+          aria-label="Instagram media slot"
+          className="mt-6 border border-dashed border-oxblood-line bg-cream p-6"
+        >
+          <p className="eyebrow">Reel / photo embed slot</p>
+          <p className="mt-2 text-sm text-muted">
+            Reserved for an Instagram reel or photo. It stays empty until the owner gives permission and a post link.
+          </p>
         </div>
       </div>
     </section>

@@ -69,6 +69,7 @@ test('JSON-LD: valid HairSalon with only verified fields', () => {
   assert.equal(ld.aggregateRating.reviewCount, 49);
   assert.equal('telephone' in ld, false, 'telephone must be absent while phone is null');
   assert.equal('priceRange' in ld, false);
+  assert.equal('founder' in ld, false, 'owner is not verified as founder');
 });
 
 test('content: no invented contact or price leaks in rendered HTML', () => {
@@ -142,4 +143,27 @@ test('design: no banned styles or emoji in source', () => {
 
 test('no committed secrets or stray files', () => {
   for (const f of ['.env', '.DS_Store']) assert.equal(existsSync(join(root, f)), false);
+});
+
+test('services: only verified broad categories, no invented sub-items', () => {
+  const board = salon.slice(salon.indexOf('export const SERVICE_BOARD'), salon.indexOf('export const RATE_LABEL'));
+  const names = [...board.matchAll(/name: '([^']+)'/g)].map((m) => m[1]);
+  assert.deepEqual(names, ['Hair', 'Beard & Shave', 'Skin']);
+  for (const t of ['Hair & Cuts', 'Beard & Shave', 'Skin & Grooming']) assert.ok(board.includes(`title: '${t}'`), t);
+  assert.ok(!/colou?r|add-ons|facial/i.test(board), 'unverified services must not be listed');
+  const inquiry = read('src/components/AppointmentInquiry.tsx');
+  assert.ok(inquiry.includes('SERVICE_BOARD.map((c) => c.title)'), 'inquiry options must come from categories');
+});
+
+test('polish: fonts via next/font, nav closes on click, instagram slot', () => {
+  const layout = read('src/app/layout.tsx');
+  assert.match(layout, /Fraunces[\s\S]*display: 'swap'/);
+  assert.match(layout, /Plus_Jakarta_Sans/);
+  assert.match(read('src/app/globals.css'), /--font-display: var\(--font-fraunces\)/);
+  const nav = read('src/components/MastheadNav.tsx');
+  assert.match(nav, /onClick=\{closeMenu\}/);
+  assert.ok(nav.includes('max-h-[calc(100dvh-8.5rem)]') && nav.includes('overflow-y-auto'));
+  const ig = read('src/components/InstagramShowcase.tsx');
+  assert.ok(!ig.includes('hover:bg-white') && ig.includes('#FFFDF8'));
+  assert.ok(html().includes('Reel / photo embed slot'));
 });
