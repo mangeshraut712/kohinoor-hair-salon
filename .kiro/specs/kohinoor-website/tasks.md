@@ -19,3 +19,10 @@
   - In `src/components/MastheadNav.tsx`, ensure the header title (`text-base sm:text-lg md:text-xl`) and mobile `Menu` toggle fit cleanly inside 360px-390px without clipping.
   - Check all other grid/flex sections (`ServiceBoard`, `OwnerAndCraft`, `InstagramShowcase`, `ReviewsAndHours`, `LocationAndDirections`, `AppointmentInquiry`, `SalonFooter`) for `min-w-0` on grid children so no mobile viewport can horizontally overflow.
   - Verify `npm run lint`, `npm run type-check`, `npm run build:cloudflare`, and `npm test` pass, and confirm `document.documentElement.scrollWidth <= window.innerWidth` at 390px if testable.
+- [x] 11. Address remaining Kilo Code Review findings on PR #1 and add unit tests for `whatsapp.ts`:
+  - In `src/lib/whatsapp.ts`, require an explicit country code in `buildWhatsAppLink` (reject bare 10-digit numbers without country code so `wa.me/9876543210` is never emitted; require 11+ digits such as `91XXXXXXXXXX`), and add unit tests in `tests/site.test.mjs` covering `normalizeNumber`, `buildWhatsAppLink`, and `buildTelLink`.
+  - In `src/components/AppointmentInquiry.tsx`, add client-side mobile input validation (`pattern="[0-9+\\s-]{10,}"` and `title="Enter a valid phone number (10+ digits)"`) and type `day` and `slot` with `(typeof DAYS)[number]` and `(typeof TIME_SLOTS)[number]` instead of `as string`.
+  - In `src/components/MastheadNav.tsx`, close the mobile `<details>` menu on `Escape` key press and outside pointer/click events.
+  - In `src/components/ContactActions.tsx`, use a distinct `lucide-react` icon (`Calendar` or `Send`) for the `#appointment` fallback CTA instead of reusing `MessageCircle`.
+  - In `src/data/salon.ts` and `src/components/ReviewsAndHours.tsx`, annotate `SERVICE_BOARD` and `HOURS_SCHEDULE` as `readonly` arrays and extract `MONDAY_HOURS_NOTE` as a shared constant in `src/data/salon.ts`.
+  - Run `npm run lint`, `npm run type-check`, `npm run build:cloudflare`, and `npm test`, and record verification in `.kiro/evidence/pass-1-verification.md`.

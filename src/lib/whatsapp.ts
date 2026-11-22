@@ -7,11 +7,17 @@ export interface InquiryInput {
   notes: string;
 }
 
-/** Strip everything but digits; returns null if the result is not a plausible number. */
+/** Strip everything but digits; returns null if the result is not a plausible number (10+ digits). */
 export function normalizeNumber(raw: string | null | undefined): string | null {
   if (!raw) return null;
   const digits = raw.replace(/\D/g, '');
   return digits.length >= 10 ? digits : null;
+}
+
+/** wa.me and tel:+ need an explicit country code, so bare 10-digit numbers are rejected (need 11+ digits, e.g. 91XXXXXXXXXX). */
+function normalizeInternational(raw: string | null | undefined): string | null {
+  const n = normalizeNumber(raw);
+  return n && n.length >= 11 ? n : null;
 }
 
 export function buildInquiryMessage(input: InquiryInput): string {
@@ -31,13 +37,13 @@ export function buildInquiryMessage(input: InquiryInput): string {
 
 /** Returns a wa.me link, or null while the shop WhatsApp number is pending. */
 export function buildWhatsAppLink(number: string | null | undefined, message: string): string | null {
-  const n = normalizeNumber(number);
+  const n = normalizeInternational(number);
   if (!n) return null;
   return `https://wa.me/${n}?text=${encodeURIComponent(message)}`;
 }
 
 /** Returns a tel: link, or null while the shop phone number is pending. */
 export function buildTelLink(number: string | null | undefined): string | null {
-  const n = normalizeNumber(number);
+  const n = normalizeInternational(number);
   return n ? `tel:+${n}` : null;
 }

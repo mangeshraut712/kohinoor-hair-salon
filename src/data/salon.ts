@@ -65,7 +65,7 @@ export interface ServiceCategory {
 }
 
 /** Prices are `null` until the owner confirms the menu (TODO-for-owner). */
-export const SERVICE_BOARD: ServiceCategory[] = [
+export const SERVICE_BOARD: readonly ServiceCategory[] = [
   {
     id: 'hair',
     title: 'Hair & Cuts',
@@ -101,8 +101,10 @@ export interface HoursRow {
   note?: string;
 }
 
-export const HOURS_SCHEDULE: HoursRow[] = [
-  { day: 'Monday', short: 'Mon', hours: '7:30 AM – 12:00 PM', note: 'Please verify the afternoon schedule with the shop.' },
+export const MONDAY_HOURS_NOTE = 'Please verify the afternoon schedule with the shop.';
+
+export const HOURS_SCHEDULE: readonly HoursRow[] = [
+  { day: 'Monday', short: 'Mon', hours: '7:30 AM – 12:00 PM', note: MONDAY_HOURS_NOTE },
   { day: 'Tuesday', short: 'Tue', hours: '7:30 AM – 10:00 PM' },
   { day: 'Wednesday', short: 'Wed', hours: '7:30 AM – 10:00 PM' },
   { day: 'Thursday', short: 'Thu', hours: '7:30 AM – 10:00 PM' },

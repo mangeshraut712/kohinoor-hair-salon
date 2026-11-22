@@ -1,4 +1,4 @@
-import { Navigation, Phone, MessageCircle } from 'lucide-react';
+import { Calendar, Navigation, Phone, MessageCircle } from 'lucide-react';
 import { SALON_INFO } from '@/data/salon';
 import { buildTelLink, buildWhatsAppLink } from '@/lib/whatsapp';
 
@@ -15,7 +15,7 @@ export function ContactActions({ className = '' }: { className?: string }) {
           </a>
         ) : (
           <a href="#appointment" className="btn btn-solid">
-            <MessageCircle size={18} aria-hidden="true" /> Send an inquiry
+            <Calendar size={18} aria-hidden="true" /> Send an inquiry
           </a>
         )}
         <a

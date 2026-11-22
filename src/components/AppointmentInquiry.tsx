@@ -11,8 +11,8 @@ export function AppointmentInquiry() {
     name: '',
     mobile: '',
     service: SERVICES[0],
-    day: DAYS[0] as string,
-    slot: TIME_SLOTS[0] as string,
+    day: DAYS[0] as (typeof DAYS)[number],
+    slot: TIME_SLOTS[0] as (typeof TIME_SLOTS)[number],
     notes: '',
   });
   const [status, setStatus] = useState('');
@@ -71,6 +71,8 @@ export function AppointmentInquiry() {
               type="tel"
               inputMode="tel"
               autoComplete="tel"
+              pattern="[0-9+\s\-]{10,}"
+              title="Enter a valid phone number (10+ digits)"
               value={form.mobile}
               onChange={set('mobile')}
             />

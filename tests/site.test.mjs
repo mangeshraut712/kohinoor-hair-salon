@@ -176,3 +176,28 @@ test('mobile overflow guards: min-w-0 on grid children and fluid hero title', ()
     assert.match(_rf(`src/components/${f}.tsx`, 'utf8'), /\[&>\*\]:min-w-0/, f);
   }
 });
+
+test('whatsapp.ts: normalizeNumber, buildWhatsAppLink, buildTelLink', async () => {
+  const { normalizeNumber, buildWhatsAppLink, buildTelLink } = await import('../src/lib/whatsapp.ts');
+  assert.equal(normalizeNumber(null), null);
+  assert.equal(normalizeNumber('12345'), null);
+  assert.equal(normalizeNumber('+91 98765-43210'), '919876543210');
+  assert.equal(buildWhatsAppLink(null, 'hi'), null);
+  assert.equal(buildWhatsAppLink('9876543210', 'hi'), null, 'bare 10-digit number has no country code');
+  assert.equal(buildWhatsAppLink('+91 98765 43210', 'a b'), 'https://wa.me/919876543210?text=a%20b');
+  assert.equal(buildTelLink(undefined), null);
+  assert.equal(buildTelLink('9876543210'), null);
+  assert.equal(buildTelLink('+91 98765 43210'), 'tel:+919876543210');
+});
+
+test('review fixes: validation, Escape close, icon, readonly data', () => {
+  const inq = read('src/components/AppointmentInquiry.tsx');
+  assert.ok(inq.includes('title="Enter a valid phone number (10+ digits)"') && inq.includes('pattern='));
+  assert.ok(inq.includes('(typeof DAYS)[number]') && inq.includes('(typeof TIME_SLOTS)[number]'));
+  const nav = read('src/components/MastheadNav.tsx');
+  assert.ok(nav.includes("'Escape'") && nav.includes('pointerdown'));
+  assert.match(read('src/components/ContactActions.tsx'), /<Calendar /);
+  assert.match(salon, /SERVICE_BOARD: readonly/);
+  assert.match(salon, /HOURS_SCHEDULE: readonly/);
+  assert.match(salon, /export const MONDAY_HOURS_NOTE/);
+});

@@ -32,3 +32,12 @@ Pending owner (still `null`, per CONTENT.md): phone/WhatsApp, ₹ menu, hero pho
 - Hero title uses `clamp(2.15rem,9vw,4.5rem)`; masthead title is `text-base sm:text-lg md:text-xl` with `min-w-0`; Menu toggle is `shrink-0`.
 - All section grids use `[&>*]:min-w-0`. A test in `tests/site.test.mjs` enforces this.
 - lint, type-check, build:cloudflare and npm test pass. A real 390px `scrollWidth` check was not run (no browser in this session).
+
+## Task 11: remaining PR #1 review findings
+- `buildWhatsAppLink` and `buildTelLink` now require 11+ digits (country code); bare 10-digit numbers return `null`. Unit tests cover `normalizeNumber`, `buildWhatsAppLink`, `buildTelLink` (imports `src/lib/whatsapp.ts` via Node type stripping; CI uses Node 22 latest).
+- Inquiry form: mobile `pattern` and `title`; `day`/`slot` typed with `(typeof DAYS)[number]` / `(typeof TIME_SLOTS)[number]`.
+- Mobile menu closes on Escape and outside pointerdown.
+- Inquiry fallback CTA uses the `Calendar` icon.
+- `SERVICE_BOARD` and `HOURS_SCHEDULE` are `readonly`; `MONDAY_HOURS_NOTE` shared constant.
+- `npm run lint`, `type-check`, `build:cloudflare`, `npm test` (16/16): all exit 0.
+- Not verified: Escape/outside-click behavior in a real browser.

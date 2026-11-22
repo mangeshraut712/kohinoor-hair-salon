@@ -1,4 +1,4 @@
-import { HOURS_SCHEDULE, SALON_INFO } from '@/data/salon';
+import { HOURS_SCHEDULE, MONDAY_HOURS_NOTE, SALON_INFO } from '@/data/salon';
 
 export function ReviewsAndHours() {
   const { google } = SALON_INFO;
@@ -53,7 +53,7 @@ export function ReviewsAndHours() {
             </tbody>
           </table>
           <p className="mt-3 text-sm text-muted">
-            Monday hours are as listed on Google. Please verify the afternoon schedule with the shop.
+            Monday hours are as listed on Google. {MONDAY_HOURS_NOTE}
           </p>
         </div>
       </div>
