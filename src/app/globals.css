@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+:root {
+  --bg-cream: #FAF6EE;
+  --bg-parchment: #F2EADF;
+  --ink-primary: #1E1715;
+  --ink-muted: #574842;
+  --oxblood: #5A141E;
+  --oxblood-dark: #420C14;
+  --rule: #D7CBB9;
+}
+
+body {
+  background-color: var(--bg-cream);
+  color: var(--ink-primary);
+}
