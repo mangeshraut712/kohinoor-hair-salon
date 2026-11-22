@@ -7,10 +7,120 @@
   --ink-muted: #574842;
   --oxblood: #5A141E;
   --oxblood-dark: #420C14;
+  --oxblood-border: #7E2C36;
   --rule: #D7CBB9;
+  --font-display: Fraunces, "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Plus Jakarta Sans", "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@theme inline {
+  --color-cream: var(--bg-cream);
+  --color-parchment: var(--bg-parchment);
+  --color-ink: var(--ink-primary);
+  --color-muted: var(--ink-muted);
+  --color-oxblood: var(--oxblood);
+  --color-oxblood-dark: var(--oxblood-dark);
+  --color-oxblood-line: var(--oxblood-border);
+  --color-rule: var(--rule);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
 }
 
 body {
   background-color: var(--bg-cream);
   color: var(--ink-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+a, button, input, select, textarea, summary {
+  outline-color: var(--oxblood);
+}
+
+:focus-visible {
+  outline: 2px solid var(--oxblood);
+  outline-offset: 2px;
+}
+
+.on-oxblood :focus-visible {
+  outline-color: var(--bg-cream);
+}
+
+.tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--oxblood);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  border: 1px solid var(--oxblood);
+  transition: background-color 0.15s, color 0.15s;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-solid {
+  background: var(--oxblood);
+  color: var(--bg-cream);
+}
+.btn-solid:hover { background: var(--oxblood-dark); }
+
+.btn-line {
+  background: transparent;
+  color: var(--oxblood);
+}
+.btn-line:hover { background: var(--bg-parchment); }
+
+.on-oxblood .btn-solid {
+  background: var(--bg-cream);
+  color: var(--oxblood);
+  border-color: var(--bg-cream);
+}
+.on-oxblood .btn-solid:hover { background: var(--bg-parchment); }
+.on-oxblood .btn-line {
+  color: var(--bg-cream);
+  border-color: var(--bg-cream);
+}
+.on-oxblood .btn-line:hover { background: var(--oxblood-dark); }
+
+.field {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-cream);
+  border: 1px solid var(--oxblood-border);
+  color: var(--ink-primary);
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
 }

@@ -1,0 +1,35 @@
+import { SALON_INFO } from '@/data/salon';
+
+export function SalonFooter() {
+  return (
+    <footer className="on-oxblood bg-oxblood px-4 pb-24 pt-10 text-cream md:pb-10">
+      <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
+        <div>
+          <p className="font-display text-xl font-bold uppercase">{SALON_INFO.name}</p>
+          <p className="mt-2 text-sm">{SALON_INFO.address.full}</p>
+        </div>
+        <div className="tabular text-sm">
+          <p>Mon 7:30 AM – 12:00 PM</p>
+          <p>Tue–Sun 7:30 AM – 10:00 PM</p>
+        </div>
+        <ul className="space-y-1 text-sm font-semibold">
+          <li>
+            <a className="underline underline-offset-2" href={SALON_INFO.instagram.url} target="_blank" rel="noopener noreferrer">
+              {SALON_INFO.instagram.handle}
+            </a>
+          </li>
+          <li>
+            <a className="underline underline-offset-2" href={SALON_INFO.owner.instagramUrl} target="_blank" rel="noopener noreferrer">
+              {SALON_INFO.owner.handle}
+            </a>
+          </li>
+          <li>
+            <a className="underline underline-offset-2" href={SALON_INFO.google.listingUrl} target="_blank" rel="noopener noreferrer">
+              Google listing
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  );
+}
