@@ -12,7 +12,7 @@ export function InstagramShowcase() {
         <p className="mt-3 max-w-2xl text-muted">
           Photos and reels live on Instagram, where the shop posts them. Nothing is copied here.
         </p>
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
+        <div className="mt-8 grid [&>*]:min-w-0 gap-6 md:grid-cols-2">
           <a
             href={instagram.url}
             target="_blank"

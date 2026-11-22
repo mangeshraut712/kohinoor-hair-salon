@@ -56,12 +56,12 @@ function HeroPhotoSlot() {
 export function HeroShopSign() {
   return (
     <section id="top" aria-labelledby="hero-title" className="border-b border-rule bg-cream">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-[1.3fr_1fr] md:items-center md:py-20">
-        <div>
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-[1.3fr_1fr] md:items-center md:py-20 [&>*]:min-w-0">
+        <div className="min-w-0">
           <p className="eyebrow">Men’s Hair | Skin · Pimple Nilakh, Pune</p>
           <h1
             id="hero-title"
-            className="mt-4 font-display text-5xl font-extrabold uppercase leading-[0.95] text-oxblood md:text-7xl"
+            className="mt-4 font-display text-[clamp(2.15rem,9vw,4.5rem)] font-extrabold uppercase leading-[0.95] text-oxblood md:text-7xl"
           >
             The Kohinoor
             <br />

@@ -3,7 +3,7 @@ import { SALON_INFO } from '@/data/salon';
 export function SalonFooter() {
   return (
     <footer className="on-oxblood bg-oxblood px-4 pb-24 pt-10 text-cream md:pb-10">
-      <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
+      <div className="mx-auto grid [&>*]:min-w-0 max-w-6xl gap-6 md:grid-cols-3">
         <div>
           <p className="font-display text-xl font-bold uppercase">{SALON_INFO.name}</p>
           <p className="mt-2 text-sm">{SALON_INFO.address.full}</p>

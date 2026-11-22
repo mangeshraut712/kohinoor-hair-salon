@@ -4,7 +4,7 @@ export function ReviewsAndHours() {
   const { google } = SALON_INFO;
   return (
     <section id="reviews-hours" aria-labelledby="reviews-title" className="border-b border-rule bg-cream">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-2">
+      <div className="mx-auto grid [&>*]:min-w-0 max-w-6xl gap-10 px-4 py-14 md:grid-cols-2">
         <div>
           <p className="eyebrow">Google Reviews</p>
           <h2 id="reviews-title" className="mt-2 text-3xl font-bold text-oxblood md:text-4xl">

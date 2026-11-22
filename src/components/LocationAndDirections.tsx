@@ -4,7 +4,7 @@ export function LocationAndDirections() {
   const { address, links, geo } = SALON_INFO;
   return (
     <section id="location" aria-labelledby="location-title" className="border-b border-rule bg-parchment">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 md:grid-cols-[1fr_1.4fr]">
+      <div className="mx-auto grid [&>*]:min-w-0 max-w-6xl gap-8 px-4 py-14 md:grid-cols-[1fr_1.4fr]">
         <div>
           <p className="eyebrow">Find the Shop</p>
           <h2 id="location-title" className="mt-2 text-3xl font-bold text-oxblood md:text-4xl">

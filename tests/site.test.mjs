@@ -167,3 +167,12 @@ test('polish: fonts via next/font, nav closes on click, instagram slot', () => {
   assert.ok(!ig.includes('hover:bg-white') && ig.includes('#FFFDF8'));
   assert.ok(html().includes('Reel / photo embed slot'));
 });
+
+import { readFileSync as _rf } from 'node:fs';
+test('mobile overflow guards: min-w-0 on grid children and fluid hero title', () => {
+  const hero = _rf('src/components/HeroShopSign.tsx', 'utf8');
+  assert.match(hero, /clamp\(2\.15rem,9vw,4\.5rem\)/);
+  for (const f of ['HeroShopSign','ServiceBoard','OwnerAndCraft','InstagramShowcase','ReviewsAndHours','LocationAndDirections','AppointmentInquiry','SalonFooter']) {
+    assert.match(_rf(`src/components/${f}.tsx`, 'utf8'), /\[&>\*\]:min-w-0/, f);
+  }
+});

@@ -3,7 +3,7 @@ import { SALON_INFO } from '@/data/salon';
 export function OwnerAndCraft() {
   return (
     <section id="owner" aria-labelledby="owner-title" className="border-b border-rule bg-cream">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-14 md:grid-cols-[1fr_1.4fr]">
+      <div className="mx-auto grid [&>*]:min-w-0 max-w-6xl gap-8 px-4 py-14 md:grid-cols-[1fr_1.4fr]">
         <div>
           <p className="eyebrow">The Owner</p>
           <h2 id="owner-title" className="mt-2 text-3xl font-bold text-oxblood md:text-4xl">

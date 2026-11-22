@@ -27,3 +27,8 @@ Pending owner (still `null`, per CONTENT.md): phone/WhatsApp, ₹ menu, hero pho
 - Mobile menu closes on link click; dropdown capped at `max-h-[calc(100dvh-8.5rem)]` with scroll.
 - Instagram cards hover `#FFFDF8`; added reel/photo embed slot note pending owner permission.
 - `npm run lint`, `npm run type-check`, `npm run build:cloudflare`, `npm test` (13/13): all exit 0.
+
+## Task 10: mobile overflow fix
+- Hero title uses `clamp(2.15rem,9vw,4.5rem)`; masthead title is `text-base sm:text-lg md:text-xl` with `min-w-0`; Menu toggle is `shrink-0`.
+- All section grids use `[&>*]:min-w-0`. A test in `tests/site.test.mjs` enforces this.
+- lint, type-check, build:cloudflare and npm test pass. A real 390px `scrollWidth` check was not run (no browser in this session).

@@ -33,7 +33,7 @@ export function AppointmentInquiry() {
 
   return (
     <section id="appointment" aria-labelledby="appointment-title" className="bg-cream">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-2">
+      <div className="mx-auto grid [&>*]:min-w-0 max-w-6xl gap-10 px-4 py-14 md:grid-cols-2">
         <div>
           <p className="eyebrow">Appointment Inquiry</p>
           <h2 id="appointment-title" className="mt-2 text-3xl font-bold text-oxblood md:text-4xl">
@@ -83,7 +83,7 @@ export function AppointmentInquiry() {
               ))}
             </select>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid [&>*]:min-w-0 gap-4 sm:grid-cols-2">
             <div>
               <label htmlFor="inq-day" className="mb-1 block text-sm font-semibold">Preferred day</label>
               <select id="inq-day" className="field" value={form.day} onChange={set('day')}>

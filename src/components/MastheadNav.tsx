@@ -17,8 +17,8 @@ export function MastheadNav() {
   const closeMenu = () => menu.current?.removeAttribute('open');
   return (
     <header className="sticky top-0 z-30 border-b border-oxblood-line bg-oxblood text-cream on-oxblood">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-        <a href="#top" className="font-display text-lg font-bold uppercase tracking-wide md:text-xl">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
+        <a href="#top" className="min-w-0 font-display text-base font-bold uppercase leading-tight tracking-wide sm:text-lg md:text-xl">
           {SALON_INFO.name}
         </a>
         <nav aria-label="Primary" className="hidden items-center gap-5 text-sm font-semibold md:flex">
@@ -36,7 +36,7 @@ export function MastheadNav() {
             Get Directions
           </a>
         </nav>
-        <details ref={menu} className="relative md:hidden">
+        <details ref={menu} className="relative shrink-0 md:hidden">
           <summary className="cursor-pointer list-none border border-cream px-3 py-2 text-sm font-semibold">
             Menu
           </summary>
