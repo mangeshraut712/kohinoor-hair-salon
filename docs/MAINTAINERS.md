@@ -21,7 +21,7 @@ A preview build supplies `noindex` metadata and a Pages response-header rule; ne
 | --- | --- | --- |
 | Lint, types and static tests | Source checks, exported files and links, withheld-content checks, indexability settings | Runtime interaction and what the host actually serves |
 | Automated browser checks | Layout, keyboard navigation, and automated accessibility checks at 320, 390, 768, 1024 and 1440 CSS pixels; consult the exact-head CI results for Windows Chromium, Linux Firefox and macOS WebKit | WebKit automation is not branded Safari; automated checks are not a complete accessibility review |
-| Manual device checks | Real Safari, iPhone and Android: check focus in the mobile menu, sticky buttons at narrow and landscape sizes, and the exact Maps and Instagram destinations | No test message is sent; record the actual devices and browsers tested |
+| Manual device checks | Real Safari, iPhone and Android: check focus in the mobile menu, sticky buttons at narrow and landscape sizes, and the exact Maps and Instagram destinations | No test message is sent or call placed; verify the displayed dialer number and record the actual devices and browsers tested |
 | Live smoke check | Signed-out HTTPS on the approved hostname: home, static assets, a missing path, robots, sitemap and correct link destinations | Passing a local export or preview does not establish a successful production deployment |
 
 ## Publish and roll back
