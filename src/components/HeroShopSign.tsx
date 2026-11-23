@@ -67,6 +67,7 @@ export function HeroShopSign() {
             <br />
             AC Salon
           </h1>
+          <p lang="mr" className="mt-3 text-lg font-semibold leading-normal text-oxblood">{SALON_INFO.marathiName}</p>
           <p className="mt-5 max-w-xl text-lg text-muted">
             Men’s hair and skin grooming at Shivaji Chowk, near Bhavani Sweet Home.
           </p>

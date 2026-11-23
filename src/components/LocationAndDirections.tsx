@@ -23,7 +23,7 @@ export function LocationAndDirections() {
         <div className="border border-oxblood-line bg-cream p-6 md:self-center">
           <p className="eyebrow">Look for</p>
           <p className="mt-2 font-display text-2xl font-bold text-oxblood">Bhavani Sweet Home</p>
-          <p className="mt-2 text-muted">The salon is near this Shivaji Chowk landmark in Sharda Colony.</p>
+          <p className="mt-2 text-muted">The salon is near this Shivaji Chowk landmark on Main Road Gavthan.</p>
         </div>
       </div>
     </section>

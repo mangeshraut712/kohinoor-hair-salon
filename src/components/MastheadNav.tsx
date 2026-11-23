@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import { SALON_INFO } from '@/data/salon';
 
@@ -35,10 +36,11 @@ export function MastheadNav() {
   return (
     <header className="sticky top-0 z-30 border-b border-oxblood-line bg-oxblood text-cream on-oxblood">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
-        <a href="#top" className="min-w-0 font-display text-base font-bold uppercase leading-tight tracking-wide sm:text-lg md:text-xl">
-          {SALON_INFO.name}
+        <a href="#top" className="flex min-w-0 items-center gap-2.5 font-display text-sm font-bold uppercase leading-tight tracking-wide sm:text-base md:text-lg">
+          <Image src="/brand/kohinoor-emblem.webp" alt="" width={40} height={40} className="size-10 shrink-0 rounded-full" preload />
+          <span>{SALON_INFO.name}</span>
         </a>
-        <nav aria-label="Primary" className="hidden items-center gap-5 text-sm font-semibold md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-3 text-sm lg:gap-5 font-semibold md:flex">
           {LINKS.map((l) => (
             <a key={l.href} href={l.href} className="underline-offset-4 hover:underline">
               {l.label}

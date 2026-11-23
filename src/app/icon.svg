@@ -1,6 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <title>Kohinoor shop mark</title>
-  <path fill="#5A141E" d="M0 0h64v64H0z"/>
-  <path fill="none" stroke="#FAF6EE" stroke-width="2" d="m32 5 27 27-27 27L5 32z"/>
-  <path fill="#FAF6EE" d="M21 19h10v3h-3v9l10-9h-3v-3h11v3h-4l-9 8 11 12h3v3H34v-3h3l-9-10v10h3v3H21v-3h3V22h-3z"/>
+  <title>Scissor K emblem</title>
+  <circle cx="32" cy="32" r="29" fill="#080808" stroke="#FFFFFF" stroke-width="2"/>
+  <g fill="none" stroke="#FF2400" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="22" cy="21" r="5"/>
+    <path d="M22 26v24m1-13 18-17M24 37l19 14"/>
+  </g>
 </svg>

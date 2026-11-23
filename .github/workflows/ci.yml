@@ -36,8 +36,6 @@ jobs:
 
       - name: Build Cloudflare static export
         run: npm run build:cloudflare
-        env:
-          CLOUDFLARE_SITE_URL: https://kohinoor-hair-salon.pages.dev
 
       - name: Run verification tests
         run: npm test

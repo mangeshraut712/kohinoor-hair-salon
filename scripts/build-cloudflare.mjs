@@ -1,10 +1,18 @@
-import { cpSync, existsSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, rmSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const projectRoot = process.cwd();
 const cloudflareOutput = join(projectRoot, 'out-cloudflare');
-const requestedUrl = process.env.CLOUDFLARE_SITE_URL || 'https://kohinoor-hair-salon.pages.dev';
+let production;
+try {
+  ({ production } = JSON.parse(readFileSync(new URL('../src/data/site-origin.json', import.meta.url), 'utf8')));
+  if (typeof production !== 'string' || production.length === 0) throw new Error('Missing production origin');
+} catch {
+  console.error('Could not read production origin from src/data/site-origin.json.');
+  process.exit(1);
+}
+const requestedUrl = process.env.CLOUDFLARE_SITE_URL || production;
 
 let siteUrl;
 try {

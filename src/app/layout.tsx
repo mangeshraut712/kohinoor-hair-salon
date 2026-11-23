@@ -7,15 +7,15 @@ const fraunces = Fraunces({ subsets: ['latin'], display: 'swap', variable: '--fo
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], display: 'swap', variable: '--font-jakarta' });
 
 const description =
-  'Men’s hair and skin grooming at The Kohinoor AC Salon, Shivaji Chowk, Sharda Colony, Pimple Nilakh, Pune 411027.';
+  'Men’s hair and skin grooming at The Kohinoor AC Salon, Shivaji Chowk, Main Road Gavthan, Pimple Nilakh, Pune 411027.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: 'The Kohinoor AC Salon | Men’s Hair & Skin, Pimple Nilakh, Pune',
+  title: `${SALON_INFO.listingName} | Men’s Hair & Skin, Pune`,
   description,
   ...(process.env.KOHINOOR_PREVIEW === '1' ? { robots: { index: false, follow: false } } : { alternates: { canonical: '/' } }),
   openGraph: {
-    title: 'The Kohinoor AC Salon | Pimple Nilakh, Pune',
+    title: `${SALON_INFO.listingName} | Pune`,
     description,
     url: '/',
     siteName: SALON_INFO.name,
@@ -36,7 +36,15 @@ function buildJsonLd() {
   const ld: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'HairSalon',
-    name: SALON_INFO.name,
+    name: SALON_INFO.listingName,
+    alternateName: SALON_INFO.marathiName,
+    telephone: SALON_INFO.phone,
+    openingHoursSpecification: [{
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: SALON_INFO.hours.openDays,
+      opens: SALON_INFO.hours.opens,
+      closes: SALON_INFO.hours.closes,
+    }],
     url: `${SITE_URL}/`,
     description,
     address: {
@@ -55,7 +63,6 @@ function buildJsonLd() {
     hasMap: SALON_INFO.links.googleDirections,
     sameAs: [SALON_INFO.instagram.url, SALON_INFO.google.listingUrl],
   };
-  if (SALON_INFO.phone) ld.telephone = `+${SALON_INFO.phone.replace(/\D/g, '')}`;
   return ld;
 }
 
