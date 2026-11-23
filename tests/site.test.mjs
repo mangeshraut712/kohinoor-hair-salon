@@ -149,18 +149,18 @@ test('polish: fonts via next/font, nav closes on click and restores keyboard foc
   const nav = read('src/components/MastheadNav.tsx');
   assert.match(nav, /target\?\.scrollIntoView\(\{ block: 'start' \}\)/);
   assert.ok(nav.includes('max-h-[calc(100dvh-8.5rem)]') && nav.includes('overflow-y-auto'));
-  const ig = read('src/components/InstagramShowcase.tsx');
-  assert.ok(!ig.includes('hover:bg-white') && ig.includes('#FFFDF8'));
   assert.match(nav, /querySelector\('summary'\)\?\.focus\(\)/);
 });
 
-import { readFileSync as _rf } from 'node:fs';
-test('mobile overflow guards: min-w-0 on grid children and fluid hero title', () => {
-  const hero = _rf('src/components/HeroShopSign.tsx', 'utf8');
-  assert.match(hero, /clamp\(2\.15rem,9vw,4\.5rem\)/);
-  for (const f of ['HeroShopSign','ServiceBoard','InstagramShowcase','LocationAndDirections','ShopContact','SalonFooter']) {
-    assert.match(_rf(`src/components/${f}.tsx`, 'utf8'), /\[&>\*\]:min-w-0/, f);
+test('editorial images ship with the export and link visitors to the salon’s own reels', () => {
+  const page = html();
+  for (const name of ['haircut', 'beard', 'grooming']) {
+    const path = `images/${name}.webp`;
+    assert.ok(existsSync(join(out, path)), path);
+    assert.ok(page.includes(`src="/${path}"`), path);
   }
+  assert.ok(page.includes('Editorial photography'));
+  assert.ok(page.includes('href="https://www.instagram.com/the_kohinoor_salon/reels/"'));
 });
 
 test('whatsapp.ts: normalizeNumber, buildWhatsAppLink, buildTelLink', async () => {

@@ -1,3 +1,4 @@
+import { ShareDirections } from './VisitTools';
 import { SALON_INFO } from '@/data/salon';
 
 export function LocationAndDirections() {
@@ -19,6 +20,7 @@ export function LocationAndDirections() {
               Apple Maps directions
             </a>
           </div>
+          <ShareDirections />
         </div>
         <div className="border border-oxblood-line bg-cream p-6 md:self-center">
           <p className="eyebrow">Nearby landmark</p>

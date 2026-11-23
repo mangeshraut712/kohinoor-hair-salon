@@ -11,3 +11,15 @@
 - Hair/cuts, beard/shave and skin/grooming are broad inquiries, not bookable services or prices.
 
 Unpublished until confirmed and permitted: WhatsApp, exact service menu and prices, photography and staff information. Do not use personal social accounts, third-party rating counts or copied customer content on the website.
+
+## Editorial service photographs
+
+The service photographs illustrate grooming categories. The salon’s official Instagram is the source for its own portfolio. Store approved shop or customer photographs separately with permission from the owner and subjects.
+
+| Local WebP | Photographer | Source |
+| --- | --- | --- |
+| haircut.webp | cottonbro studio | [Barber giving a haircut](https://www.pexels.com/photo/photo-of-a-barber-giving-a-haircut-3998395/) |
+| beard.webp | cottonbro studio | [Man getting a beard cut](https://www.pexels.com/photo/man-getting-a-beard-cut-3998417/) |
+| grooming.webp | Josh Sorenson | [Straight razor kit](https://www.pexels.com/photo/straight-razor-kit-995300/) |
+
+The photographs are distributed under the [Pexels License](https://www.pexels.com/license/). The local files are resized, metadata-stripped WebP exports.
