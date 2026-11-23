@@ -1,4 +1,4 @@
-import { cpSync, existsSync, rmSync } from 'node:fs';
+import { cpSync, existsSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
@@ -43,4 +43,7 @@ if (build.status !== 0) {
 }
 
 cpSync(join(projectRoot, 'out'), cloudflareOutput, { recursive: true });
+if (process.env.KOHINOOR_PREVIEW === '1') {
+  writeFileSync(join(cloudflareOutput, '_headers'), '/*\n  X-Robots-Tag: noindex, nofollow\n');
+}
 console.log(`Prepared Cloudflare Pages artifact in ${cloudflareOutput}`);

@@ -1,23 +1,24 @@
-# The Kohinoor AC Salon — Pimple Nilakh, Pune
+# The Kohinoor AC Salon · Pimple Nilakh, Pune
 
-Static small-business website for **The Kohinoor AC Salon** (`@the_kohinoor_salon`), a men's hair and skin grooming shop at **Shivaji Chowk, near Bhavani Sweet Home, Sharda Colony, Pimple Nilakh, Pimpri-Chinchwad, Pune 411027**, owned by **Sagar Kale** (`@sagar._7716`).
+A mobile-first site that helps customers find the salon and message its business Instagram. The cream-and-oxblood design takes its cues from shop signage. There are no accounts, embedded maps, analytics, or booking forms.
 
-## Design & Content Principles
+## Start here
 
-- **Verified facts only:** Business details, address, hours, rating, and social links come exclusively from verified public listings (`CONTENT.md`). Unverified details (phone/WhatsApp number, exact ₹ service prices, staff roster, and shop photography) are explicitly tracked as `TODO-for-owner`.
-- **Visual identity:** Cream (`#FAF6EE`) and oxblood (`#5A141E`) shop-sign typography, readable service board, prominent mobile Call & Directions actions, one dedicated hero slot for a real owner photo, and an appointment inquiry flow modeled on `mangeshraut712/kashishbeautyparlour`.
-- **Static & fast:** Next.js static export (`output: 'export'`) outputting to `out-cloudflare/` for Cloudflare Pages preview hosting.
+- [Shop owner handover](docs/OWNER-HANDOVER.md): what the site does, what to check, and how to request changes.
+- [Business facts](docs/CONTENT.md): approved listing information and what stays unpublished.
+- [Maintainer handbook](docs/MAINTAINERS.md): build, test, publish, and roll back.
+- [Release plan](docs/RELEASE.md): launch scope and gates.
 
-## Local Development & Verification
+## Verify and build
 
-```bash
-npm install
+Use Node.js 22, which is the CI baseline, or supported Node.js 24 LTS.
+
+```sh
+npm ci
 npm run lint
 npm run type-check
-npm test
 npm run build:cloudflare
+npm test
 ```
 
-## Spec-Driven Workflow
-
-Specifications, steering documents, and build tasks live under `.kiro/steering/` and `.kiro/specs/kohinoor-website/`.
+Serve the generated `out-cloudflare/` directory to review locally. This is a build folder, not a live site. See the maintainer handbook before making a hosted preview or publishing. Older Kiro notes document the initial design; the current fact ledger and release plan govern what ships.

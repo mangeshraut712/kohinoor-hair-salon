@@ -1,10 +1,28 @@
 # Implementation Tasks
 
-- [ ] 1. Create `src/data/salon.ts` and `src/lib/whatsapp.ts` matching `CONTENT.md` with strict nullable fields for unconfirmed phone/WhatsApp/prices/photos.
-- [ ] 2. Build Cream (`#FAF6EE`) + Oxblood (`#5A141E`) shop-sign typography and CSS theme tokens in `src/app/globals.css` and `src/app/layout.tsx`, including `HairSalon` JSON-LD and SEO metadata.
-- [ ] 3. Implement `MastheadNav`, `HeroShopSign` (with one dedicated real owner photo slot), and `MobileActionDock` with prominent Call & Directions CTAs on mobile.
-- [ ] 4. Implement `ServiceBoard` (readable Hair / Beard / Skin board without invented prices) and `OwnerAndCraft` (Sagar Kale / AC shop / Shivaji Chowk context).
-- [ ] 5. Implement `InstagramShowcase` (`@the_kohinoor_salon` & `@sagar._7716` link/reel slots, zero copied media) and `ReviewsAndHours` (4.5/5 from 49 reviews + exact hours).
-- [ ] 6. Implement `LocationAndDirections` (keyless Google Maps embed + Google/Apple Maps links) and `AppointmentInquiry` (Kashish-style easy WhatsApp/copy inquiry flow).
-- [ ] 7. Add comprehensive `tests/` checks: data truthfulness audit (no fake phone/prices), static export route check (`out-cloudflare/index.html`, `robots.txt`, `sitemap.xml`), JSON-LD schema validation, internal anchor/link integrity, and basic HTML accessibility checks (landmarks, `h1`, image alt, no empty buttons/links).
-- [ ] 8. Run `npm run lint`, `npm run type-check`, `npm test`, and `npm run build:cloudflare`, inspect rendered output, and record verification evidence in `.kiro/evidence/`.
+- [x] 1. Create `src/data/salon.ts` and `src/lib/whatsapp.ts` matching `CONTENT.md` with strict nullable fields for unconfirmed phone/WhatsApp/prices/photos.
+- [x] 2. Build Cream (`#FAF6EE`) + Oxblood (`#5A141E`) shop-sign typography and CSS theme tokens in `src/app/globals.css` and `src/app/layout.tsx`, including `HairSalon` JSON-LD and SEO metadata.
+- [x] 3. Implement `MastheadNav`, `HeroShopSign` (with one dedicated real owner photo slot), and `MobileActionDock` with prominent Call & Directions CTAs on mobile.
+- [x] 4. Implement `ServiceBoard` (readable Hair / Beard / Skin board without invented prices) and `OwnerAndCraft` (Sagar Kale / AC shop / Shivaji Chowk context).
+- [x] 5. Implement `InstagramShowcase` (`@the_kohinoor_salon` & `@sagar._7716` link/reel slots, zero copied media) and `ReviewsAndHours` (4.5/5 from 49 reviews + exact hours).
+- [x] 6. Implement `LocationAndDirections` (keyless Google Maps embed + Google/Apple Maps links) and `AppointmentInquiry` (Kashish-style easy WhatsApp/copy inquiry flow).
+- [x] 7. Add comprehensive `tests/` checks: data truthfulness audit (no fake phone/prices), static export route check (`out-cloudflare/index.html`, `robots.txt`, `sitemap.xml`), JSON-LD schema validation, internal anchor/link integrity, and basic HTML accessibility checks (landmarks, `h1`, image alt, no empty buttons/links).
+- [x] 8. Run `npm run lint`, `npm run type-check`, `npm test`, and `npm run build:cloudflare`, inspect rendered output, and record verification evidence in `.kiro/evidence/`.
+- [x] 9. Address PR #1 review findings & typography polish:
+  - In `src/app/layout.tsx` and `src/app/globals.css`, load `Fraunces` and `Plus_Jakarta_Sans` via `next/font/google` (`display: 'swap'`) wired to `--font-display` and `--font-body` so the cream + oxblood shop-sign typography renders cleanly without falling back to system fonts.
+  - In `src/app/layout.tsx` `buildJsonLd()`, remove `founder` (CONTENT.md verifies Sagar Kale as owner, not founder; keep `sameAs` or omit `founder`).
+  - In `src/data/salon.ts`, `ServiceBoard.tsx`, and `AppointmentInquiry.tsx`, align `SERVICE_BOARD` and the inquiry dropdown to verified broad categories (`Hair & Cuts`, `Beard & Shave`, `Skin & Grooming` / `Hair`, `Skin`) without inventing unverified sub-items like `Hair colour` or `Grooming add-ons` as confirmed services, and update `tests/site.test.mjs` to enforce this.
+  - In `src/components/MastheadNav.tsx`, close the mobile menu automatically when an in-page link is clicked/activated, and cap the mobile dropdown height (`max-h-[calc(100dvh-8.5rem)] overflow-y-auto`) so it never gets blocked by `MobileActionDock` on short landscape viewports.
+  - In `src/components/InstagramShowcase.tsx`, use `#FFFDF8` hover instead of `hover:bg-white` and include an explicit Instagram reel/photo embed slot placeholder note (pending owner media permission).
+- [x] 10. Fix mobile 390px horizontal overflow spotted in screenshot QA:
+  - In `src/components/HeroShopSign.tsx`, add `min-w-0` on both grid columns and adjust `#hero-title` responsive scale (`text-[clamp(2.15rem,9vw,4.5rem)]` or `text-4xl sm:text-5xl md:text-7xl`) so `"THE KOHINOOR AC SALON"` never overflows a 360px-390px mobile screen.
+  - In `src/components/MastheadNav.tsx`, ensure the header title (`text-base sm:text-lg md:text-xl`) and mobile `Menu` toggle fit cleanly inside 360px-390px without clipping.
+  - Check all other grid/flex sections (`ServiceBoard`, `OwnerAndCraft`, `InstagramShowcase`, `ReviewsAndHours`, `LocationAndDirections`, `AppointmentInquiry`, `SalonFooter`) for `min-w-0` on grid children so no mobile viewport can horizontally overflow.
+  - Verify `npm run lint`, `npm run type-check`, `npm run build:cloudflare`, and `npm test` pass, and confirm `document.documentElement.scrollWidth <= window.innerWidth` at 390px if testable.
+- [x] 11. Address remaining Kilo Code Review findings on PR #1 and add unit tests for `whatsapp.ts`:
+  - In `src/lib/whatsapp.ts`, require an explicit country code in `buildWhatsAppLink` (reject bare 10-digit numbers without country code so `wa.me/9876543210` is never emitted; require 11+ digits such as `91XXXXXXXXXX`), and add unit tests in `tests/site.test.mjs` covering `normalizeNumber`, `buildWhatsAppLink`, and `buildTelLink`.
+  - In `src/components/AppointmentInquiry.tsx`, add client-side mobile input validation (`pattern="[0-9+\\s-]{10,}"` and `title="Enter a valid phone number (10+ digits)"`) and type `day` and `slot` with `(typeof DAYS)[number]` and `(typeof TIME_SLOTS)[number]` instead of `as string`.
+  - In `src/components/MastheadNav.tsx`, close the mobile `<details>` menu on `Escape` key press and outside pointer/click events.
+  - In `src/components/ContactActions.tsx`, use a distinct `lucide-react` icon (`Calendar` or `Send`) for the `#appointment` fallback CTA instead of reusing `MessageCircle`.
+  - In `src/data/salon.ts` and `src/components/ReviewsAndHours.tsx`, annotate `SERVICE_BOARD` and `HOURS_SCHEDULE` as `readonly` arrays and extract `MONDAY_HOURS_NOTE` as a shared constant in `src/data/salon.ts`.
+  - Run `npm run lint`, `npm run type-check`, `npm run build:cloudflare`, and `npm test`, and record verification in `.kiro/evidence/pass-1-verification.md`.

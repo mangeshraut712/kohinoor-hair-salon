@@ -41,3 +41,42 @@ jobs:
 
       - name: Run verification tests
         run: npm test
+
+  browser:
+    name: ${{ matrix.engine }} / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            engine: chromium
+          - os: ubuntu-latest
+            engine: firefox
+          - os: macos-latest
+            engine: webkit
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run build:cloudflare
+      - name: Install Linux browser and native dependencies
+        if: runner.os == 'Linux'
+        run: npx playwright install --with-deps ${{ matrix.engine }}
+      - name: Install browser
+        if: runner.os != 'Linux'
+        run: npx playwright install ${{ matrix.engine }}
+      - run: npm run test:browser -- --project=${{ matrix.engine }}
+      - uses: actions/upload-artifact@v5
+        if: failure()
+        with:
+          name: browser-traces-${{ matrix.engine }}
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 7
