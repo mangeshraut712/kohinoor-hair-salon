@@ -24,12 +24,6 @@ export function SalonFooter() {
           </li>
         </ul>
       </div>
-      <div className="mx-auto mt-8 max-w-6xl border-t border-cream/40 pt-5 text-sm">
-        <p>Looking for women’s beauty services in Thergaon?</p>
-        <a className="inline-block py-2 font-semibold underline underline-offset-4" href="https://mangeshraut712.github.io/kashishbeautyparlour/">
-          Visit Kashish Beauty Parlour &amp; Training Center
-        </a>
-      </div>
     </footer>
   );
 }

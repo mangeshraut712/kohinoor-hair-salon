@@ -31,9 +31,9 @@ Kohinoor is a men’s salon at Shivaji Chowk in Pimple Nilakh. The website makes
 | **Address** | Shivaji Chowk, near Bhavani Sweet Home, Main Road Gavthan, Pimple Nilakh, Pimpri-Chinchwad, Pune 411027, Maharashtra |
 | **Find us** | [Open the shop pin in Google Maps](https://maps.app.goo.gl/141XQMZtooLVQQN29?g_st=ic) |
 
-### Looking for women’s beauty services?
+### Women’s beauty services and professional training in Thergaon
 
-Visit [Kashish Beauty Parlour & Training Center](https://mangeshraut712.github.io/kashishbeautyparlour/) in Thergaon, Pune. Kohinoor focuses on men’s grooming; Kashish focuses on women’s beauty services. They are separate shops. Use the relevant shop’s site for service and contact details. [Kashish source repository](https://github.com/mangeshraut712/kashishbeautyparlour).
+Kashish Beauty Parlour & Training Center offers [women’s beauty services](https://mangeshraut712.github.io/kashishbeautyparlour/en/services/), including bridal makeup and hair styling, and [professional beauty classes](https://mangeshraut712.github.io/kashishbeautyparlour/en/training/). Contact Kashish for appointments or course enquiries. For men’s grooming in Pimple Nilakh, contact Kohinoor directly.
 
 ## What the site does
 

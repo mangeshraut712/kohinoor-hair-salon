@@ -7,11 +7,11 @@ const fraunces = Fraunces({ subsets: ['latin'], display: 'swap', variable: '--fo
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], display: 'swap', variable: '--font-jakarta' });
 
 const description =
-  'Men’s hair and skin grooming at The Kohinoor AC Salon, Shivaji Chowk, Main Road Gavthan, Pimple Nilakh, Pune 411027.';
+  'Visit The Kohinoor AC Salon for men’s haircuts, beard grooming and skin care at Shivaji Chowk in Pimple Nilakh, Pune. Find opening hours, directions and the shop phone number.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: `${SALON_INFO.listingName} | Men’s Hair & Skin, Pune`,
+  title: `${SALON_INFO.listingName} | Men’s Salon in Pune`,
   description,
   icons: { icon: { url: '/brand/kohinoor-emblem.webp', type: 'image/webp', sizes: '160x160' } },
   ...(process.env.KOHINOOR_PREVIEW === '1' ? { robots: { index: false, follow: false } } : { alternates: { canonical: '/' } }),
