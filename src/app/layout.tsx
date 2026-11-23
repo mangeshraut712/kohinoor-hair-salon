@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: `${SALON_INFO.listingName} | Men’s Hair & Skin, Pune`,
   description,
+  icons: { icon: { url: '/brand/kohinoor-emblem.webp', type: 'image/webp', sizes: '160x160' } },
   ...(process.env.KOHINOOR_PREVIEW === '1' ? { robots: { index: false, follow: false } } : { alternates: { canonical: '/' } }),
   openGraph: {
     title: `${SALON_INFO.listingName} | Pune`,

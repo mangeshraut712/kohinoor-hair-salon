@@ -47,13 +47,12 @@ test('directions is the first mobile quick action and primary hero CTA', () => {
   assert.match(visible, /href="https:\/\/maps\.app\.goo\.gl[^"]+"[^>]*class="btn btn-solid"/);
 });
 
-test('salon scissor favicon and supplied navbar badge are packaged locally', () => {
+test('favicon and masthead use the official README emblem', () => {
   const icon = html.match(/rel="icon" href="(\/[^"?]+)(?:\?[^"]*)?"/);
   assert.ok(icon, 'head must link the shop icon');
-  const svg = read(icon[1].slice(1));
-  assert.match(svg, /<svg\b/);
-  assert.match(svg, /Scissor K emblem/);
-  assert.match(svg, /#FF2400/);
+  const readme = readFileSync('README.md', 'utf8');
+  const emblem = readme.match(/<img src="public(\/brand\/[^"]+)"/)?.[1];
+  assert.equal(icon[1], emblem, 'favicon must use the README emblem');
   const badge = readFileSync(resolve(root, 'brand/kohinoor-emblem.webp'));
   assert.equal(badge.subarray(8, 12).toString(), 'WEBP');
   assert.ok(badge.length < 20_000);
