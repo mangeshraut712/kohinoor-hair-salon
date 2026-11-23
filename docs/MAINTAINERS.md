@@ -15,7 +15,7 @@ KOHINOOR_PREVIEW=1 npm run build:cloudflare
 KOHINOOR_PREVIEW=1 npm test
 ```
 
-A preview build supplies `noindex` metadata and a Cloudflare Pages response-header rule; neither restricts access. For a hosted private preview, verify access protection as a signed-out visitor before sharing it. For production, leave `KOHINOOR_PREVIEW` unset. The default is `https://kohinoorsalon.vercel.app`. If using a different approved host, set `CLOUDFLARE_SITE_URL` to the same HTTPS origin for the build and tests. Verify the canonical link, robots file, sitemap, and structured-data URL agree with that origin.
+A preview build supplies `noindex` metadata and a Cloudflare Pages response-header rule; neither restricts access. For a hosted private preview, verify access protection as a signed-out visitor before sharing it. For production, leave `KOHINOOR_PREVIEW` unset. The default is `https://kohinoor-hair-salon.pages.dev`. If using a different approved host, set `CLOUDFLARE_SITE_URL` to the same HTTPS origin for the build and tests. Verify the canonical link, robots file, sitemap, and structured-data URL agree with that origin.
 
 | Gate | What it can verify | What remains separate |
 | --- | --- | --- |

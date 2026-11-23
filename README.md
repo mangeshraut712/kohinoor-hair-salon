@@ -7,7 +7,7 @@
 <p align="center"><strong>Men’s haircuts, beard grooming, and skin care · Pimple Nilakh, Pune</strong></p>
 
 <p align="center">
-  <a href="https://kohinoorsalon.vercel.app/"><strong>Salon website</strong></a> ·
+  <a href="https://kohinoor-hair-salon.pages.dev/"><strong>Salon website</strong></a> ·
   <a href="https://maps.app.goo.gl/141XQMZtooLVQQN29?g_st=ic">Directions</a> ·
   <a href="https://www.instagram.com/the_kohinoor_salon/">Instagram</a>
 </p>
@@ -46,7 +46,7 @@ Kashish Beauty Parlour & Training Center offers [women’s beauty services](http
 | **Local search** | Business name, address, hours and phone in structured data, plus a canonical URL, sitemap and robots file |
 | **Privacy** | No customer account, embedded map, analytics, or booking form. Calling, Maps and Instagram open separately. |
 
-> **Release status:** The public address currently serves the previous build. The updated logo, contact details and verified hours are in this repository. Automatic Vercel production builds from `main` are paused.
+> **Release status:** Production uses the Cloudflare Pages project `kohinoor-hair-salon`. Publish the tested static export with the command in [the release plan](docs/RELEASE.md).
 
 ## Run locally
 
