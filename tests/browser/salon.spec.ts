@@ -53,6 +53,7 @@ test('keyboard skip link, escape, and mobile menu keep focus usable', async ({ p
   await expect(nav).toBeHidden();
   await expect(page.getByRole('region', { name: 'Shivaji Chowk, Pimple Nilakh' })).toBeFocused();
   await expect(page).toHaveURL(/#location$/);
+  await expect(page.getByRole('heading', { name: 'Shivaji Chowk, Pimple Nilakh' })).toBeInViewport();
 });
 
 test('service board switches categories and resets to all', async ({ page }) => {
@@ -73,3 +74,26 @@ for (const width of [390, 1440]) {
     expect(report.violations.map(({ id, nodes }) => ({ id, selectors: nodes.map((node) => node.target) }))).toEqual([]);
   });
 }
+
+test('short landscape menu exposes Contact and scrolls it clear of the dock', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 667, height: 300 }, hasTouch: true, reducedMotion: 'reduce' });
+  try {
+    const page = await context.newPage();
+    await page.goto('/');
+    await page.locator('summary').filter({ hasText: 'Menu' }).tap();
+    const nav = page.getByRole('navigation', { name: 'Primary mobile' });
+    await nav.getByRole('link', { name: 'Contact' }).tap();
+    await expect(page).toHaveURL(/#appointment$/);
+    await expect(nav).toBeHidden();
+    const heading = page.getByRole('heading', { name: 'Ask the shop' });
+    await expect(heading).toBeInViewport();
+    await expect.poll(async () => heading.evaluate((h) => {
+      const rect = h.getBoundingClientRect();
+      const header = document.querySelector('header')?.getBoundingClientRect();
+      const dock = document.querySelector('[aria-label="Quick actions"]')?.getBoundingClientRect();
+      return rect.top >= (header?.bottom ?? 0) && rect.bottom <= (dock?.top ?? innerHeight);
+    })).toBe(true);
+  } finally {
+    await context.close();
+  }
+});

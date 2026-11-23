@@ -149,7 +149,7 @@ test('polish: fonts via next/font, nav closes on click and restores keyboard foc
   assert.match(layout, /Plus_Jakarta_Sans/);
   assert.match(read('src/app/globals.css'), /--font-display: var\(--font-fraunces\)/);
   const nav = read('src/components/MastheadNav.tsx');
-  assert.match(nav, /onClick=\{\(\) => \{ closeMenu\(\);/);
+  assert.match(nav, /target\?\.scrollIntoView\(\{ block: 'start' \}\)/);
   assert.ok(nav.includes('max-h-[calc(100dvh-8.5rem)]') && nav.includes('overflow-y-auto'));
   const ig = read('src/components/InstagramShowcase.tsx');
   assert.ok(!ig.includes('hover:bg-white') && ig.includes('#FFFDF8'));

@@ -21,9 +21,19 @@ createServer((req, res) => {
   if (existsSync(file) && statSync(file).isDirectory()) file = resolve(file, 'index.html');
   const present = existsSync(file) && statSync(file).isFile();
   if (!present) file = resolve(root, '404.html');
-  res.writeHead(present ? 200 : 404, { 'Content-Type': mime[extname(file)] ?? 'application/octet-stream' });
-  if (req.method === 'HEAD') { res.end(); return; }
+  const contentType = mime[extname(file)] ?? 'application/octet-stream';
+  if (req.method === 'HEAD') {
+    res.writeHead(present ? 200 : 404, { 'Content-Type': contentType }).end();
+    return;
+  }
   const body = createReadStream(file);
-  body.on('error', () => res.destroy());
-  body.pipe(res);
+  body.once('open', () => {
+    res.writeHead(present ? 200 : 404, { 'Content-Type': contentType });
+    body.pipe(res);
+  });
+  body.once('error', () => {
+    if (res.headersSent) res.destroy();
+    else res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' }).end('Could not read export');
+  });
+  res.once('close', () => body.destroy());
 }).listen(4173, '127.0.0.1');

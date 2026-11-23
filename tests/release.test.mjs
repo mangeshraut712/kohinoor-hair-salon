@@ -19,7 +19,7 @@ test('only direct contact and map links; no third-party embeds or collection', (
   assert.match(visible, /href="https:\/\/maps\.app\.goo\.gl\/141XQMZtooLVQQN29/);
 });
 test('preview is non-indexable; production export uses one canonical origin', () => {
-  const origin = process.env.CLOUDFLARE_SITE_URL || 'https://kohinoor-hair-salon.pages.dev';
+  const origin = new URL(process.env.CLOUDFLARE_SITE_URL || 'https://kohinoor-hair-salon.pages.dev').origin;
   if (process.env.KOHINOOR_PREVIEW === '1') {
     assert.match(html, /name="robots" content="noindex, nofollow"/);
     assert.match(read('robots.txt'), /Allow: \//);
