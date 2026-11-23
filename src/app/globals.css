@@ -31,6 +31,8 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 4.5rem;
+  scroll-padding-bottom: calc(4.5rem + env(safe-area-inset-bottom));
+
 }
 
 body {
@@ -56,6 +58,7 @@ a, button, input, select, textarea, summary {
 
 .on-oxblood :focus-visible {
   outline-color: var(--bg-cream);
+  outline-offset: -3px;
 }
 
 .tabular {

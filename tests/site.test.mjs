@@ -28,20 +28,15 @@ test('data: verified facts match CONTENT.md', () => {
     '411027',
     '/g/11fj45w_w0',
     '@the_kohinoor_salon',
-    '@sagar._7716',
-    'Sagar Kale',
   ]) {
     assert.ok(content.includes(fact), `CONTENT.md missing ${fact}`);
     assert.ok(salon.includes(fact), `salon.ts missing ${fact}`);
   }
-  assert.match(salon, /rating: 4\.5/);
-  assert.match(salon, /reviewCount: 49/);
-  assert.match(salon, /7:30 AM – 12:00 PM/);
-  assert.match(salon, /7:30 AM – 10:00 PM/);
+
 });
 
 test('data: pending owner fields are null and prices are not invented', () => {
-  for (const f of ['phone', 'whatsapp', 'heroPhotoUrl', 'staff', 'reviewQuotes']) {
+  for (const f of ['phone', 'whatsapp', 'heroPhotoUrl']) {
     assert.match(salon, new RegExp(`${f}: null as`), `${f} must be null`);
   }
   assert.ok(!/priceInr: (?!null)/.test(salon.replace(/priceInr: number \| null/, '')), 'priceInr must be null');
@@ -52,6 +47,7 @@ test('export: required files exist', () => {
   for (const f of ['index.html', 'robots.txt', 'sitemap.xml']) {
     assert.ok(existsSync(join(out, f)), `${f} missing`);
   }
+  if (process.env.KOHINOOR_PREVIEW === '1') return;
   assert.match(readFileSync(join(out, 'robots.txt'), 'utf8'), /Sitemap: https:\/\//);
   assert.match(readFileSync(join(out, 'sitemap.xml'), 'utf8'), /<loc>https:\/\/[^<]+\/<\/loc>/);
 });
@@ -65,8 +61,6 @@ test('JSON-LD: valid HairSalon with only verified fields', () => {
   assert.equal(ld.address.postalCode, '411027');
   assert.equal(ld.geo.latitude, 18.571585);
   assert.equal(ld.geo.longitude, 73.793096);
-  assert.equal(ld.aggregateRating.ratingValue, 4.5);
-  assert.equal(ld.aggregateRating.reviewCount, 49);
   assert.equal('telephone' in ld, false, 'telephone must be absent while phone is null');
   assert.equal('priceRange' in ld, false);
   assert.equal('founder' in ld, false, 'owner is not verified as founder');
@@ -81,18 +75,16 @@ test('content: no invented contact or price leaks in rendered HTML', () => {
   assert.ok(!/(\+91|\b91)[\s-]?\d{10}\b/.test(text), 'phone-like number found');
   assert.ok(!/lorem ipsum|TODO/i.test(text));
   assert.ok(text.includes('Rate confirmed at shop'));
-  assert.ok(text.includes('Number pending'));
+  assert.ok(text.includes('Open shop Instagram'));
 });
 
 test('content: key facts are rendered', () => {
   const h = html();
-  for (const s of ['4.5 / 5', '49', 'Sagar Kale', '@the_kohinoor_salon', '@sagar._7716', 'Hair &amp; Cuts', 'Beard &amp; Shave', 'Skin &amp; Grooming', '411027']) {
+  for (const s of ['@the_kohinoor_salon', 'Hair &amp; Cuts', 'Beard &amp; Shave', 'Skin &amp; Grooming', '411027']) {
     assert.ok(h.includes(s), `missing ${s}`);
   }
-  assert.ok(h.includes('7:30 AM – 12:00 PM') && h.includes('7:30 AM – 10:00 PM'));
-  assert.ok(h.includes('destination=18.571585,73.793096'));
+  assert.ok(h.includes('/141XQMZtooLVQQN29'));
   assert.ok(h.includes('maps.apple.com'));
-  assert.ok(h.includes('q=18.571585,73.793096'));
 });
 
 test('a11y: landmarks, single h1, heading order, titles, labels', () => {
@@ -118,9 +110,7 @@ test('a11y: landmarks, single h1, heading order, titles, labels', () => {
   for (const m of h.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) {
     assert.match(m[0], /rel="noopener noreferrer"/);
   }
-  for (const id of ['inq-name', 'inq-mobile', 'inq-service', 'inq-day', 'inq-slot', 'inq-notes']) {
-    assert.ok(h.includes(`for="${id}"`), `label for ${id}`);
-  }
+
 });
 
 test('links: internal anchors resolve to ids', () => {
@@ -151,28 +141,26 @@ test('services: only verified broad categories, no invented sub-items', () => {
   assert.deepEqual(names, ['Hair', 'Beard & Shave', 'Skin']);
   for (const t of ['Hair & Cuts', 'Beard & Shave', 'Skin & Grooming']) assert.ok(board.includes(`title: '${t}'`), t);
   assert.ok(!/colou?r|add-ons|facial/i.test(board), 'unverified services must not be listed');
-  const inquiry = read('src/components/AppointmentInquiry.tsx');
-  assert.ok(inquiry.includes('SERVICE_BOARD.map((c) => c.title)'), 'inquiry options must come from categories');
 });
 
-test('polish: fonts via next/font, nav closes on click, instagram slot', () => {
+test('polish: fonts via next/font, nav closes on click and restores keyboard focus', () => {
   const layout = read('src/app/layout.tsx');
   assert.match(layout, /Fraunces[\s\S]*display: 'swap'/);
   assert.match(layout, /Plus_Jakarta_Sans/);
   assert.match(read('src/app/globals.css'), /--font-display: var\(--font-fraunces\)/);
   const nav = read('src/components/MastheadNav.tsx');
-  assert.match(nav, /onClick=\{closeMenu\}/);
+  assert.match(nav, /onClick=\{\(\) => \{ closeMenu\(\);/);
   assert.ok(nav.includes('max-h-[calc(100dvh-8.5rem)]') && nav.includes('overflow-y-auto'));
   const ig = read('src/components/InstagramShowcase.tsx');
   assert.ok(!ig.includes('hover:bg-white') && ig.includes('#FFFDF8'));
-  assert.ok(html().includes('Reel / photo embed slot'));
+  assert.match(nav, /querySelector\('summary'\)\?\.focus\(\)/);
 });
 
 import { readFileSync as _rf } from 'node:fs';
 test('mobile overflow guards: min-w-0 on grid children and fluid hero title', () => {
   const hero = _rf('src/components/HeroShopSign.tsx', 'utf8');
   assert.match(hero, /clamp\(2\.15rem,9vw,4\.5rem\)/);
-  for (const f of ['HeroShopSign','ServiceBoard','OwnerAndCraft','InstagramShowcase','ReviewsAndHours','LocationAndDirections','AppointmentInquiry','SalonFooter']) {
+  for (const f of ['HeroShopSign','ServiceBoard','InstagramShowcase','LocationAndDirections','ShopContact','SalonFooter']) {
     assert.match(_rf(`src/components/${f}.tsx`, 'utf8'), /\[&>\*\]:min-w-0/, f);
   }
 });
@@ -191,13 +179,8 @@ test('whatsapp.ts: normalizeNumber, buildWhatsAppLink, buildTelLink', async () =
 });
 
 test('review fixes: validation, Escape close, icon, readonly data', () => {
-  const inq = read('src/components/AppointmentInquiry.tsx');
-  assert.ok(inq.includes('title="Enter a valid phone number (10+ digits)"') && inq.includes('pattern='));
-  assert.ok(inq.includes('(typeof DAYS)[number]') && inq.includes('(typeof TIME_SLOTS)[number]'));
   const nav = read('src/components/MastheadNav.tsx');
   assert.ok(nav.includes("'Escape'") && nav.includes('pointerdown'));
   assert.match(read('src/components/ContactActions.tsx'), /<Calendar /);
   assert.match(salon, /SERVICE_BOARD: readonly/);
-  assert.match(salon, /HOURS_SCHEDULE: readonly/);
-  assert.match(salon, /export const MONDAY_HOURS_NOTE/);
 });

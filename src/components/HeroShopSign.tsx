@@ -26,7 +26,7 @@ function HeroPhotoSlot() {
         <svg
           viewBox="0 0 400 500"
           role="img"
-          aria-label="Illustrated shop-sign frame reserved for a real photo of the salon"
+          aria-label="Illustrated Kohinoor shop sign"
           className="h-full w-full"
         >
           <rect x="24" y="24" width="352" height="452" fill="none" stroke="#7E2C36" strokeWidth="1" />
@@ -42,12 +42,12 @@ function HeroPhotoSlot() {
           <line x1="200" y1="200" x2="200" y2="390" stroke="#5A141E" strokeWidth="2" />
           <line x1="70" y1="390" x2="330" y2="390" stroke="#5A141E" strokeWidth="2" />
           <text x="200" y="436" textAnchor="middle" fontSize="13" fill="#574842" fontFamily="ui-monospace, monospace">
-            PHOTO PENDING FROM OWNER
+            PIMPLE NILAKH  ·  PUNE
           </text>
         </svg>
       </div>
       <figcaption className="tabular mt-2 text-xs text-muted">
-        Placeholder. Sagar’s real shop photo goes here.
+        The Kohinoor shop sign · Illustration
       </figcaption>
     </figure>
   );
@@ -68,18 +68,8 @@ export function HeroShopSign() {
             AC Salon
           </h1>
           <p className="mt-5 max-w-xl text-lg text-muted">
-            Haircuts, beard and shave, and skin grooming with owner Sagar Kale at Shivaji Chowk, Sharda Colony.
+            Men’s hair and skin grooming at Shivaji Chowk, near Bhavani Sweet Home.
           </p>
-          <ul className="tabular mt-6 flex flex-wrap gap-x-6 gap-y-2 border-y border-rule py-3 text-sm">
-            <li>
-              <span className="font-bold text-oxblood">
-                {SALON_INFO.google.rating.toFixed(1)} / 5
-              </span>{' '}
-              · {SALON_INFO.google.reviewCount} Google reviews
-            </li>
-            <li>Tue–Sun 7:30 AM – 10:00 PM</li>
-            <li>Mon 7:30 AM – 12:00 PM</li>
-          </ul>
           <ContactActions className="mt-8" />
         </div>
         <HeroPhotoSlot />

@@ -9,18 +9,12 @@ export function SalonFooter() {
           <p className="mt-2 text-sm">{SALON_INFO.address.full}</p>
         </div>
         <div className="tabular text-sm">
-          <p>Mon 7:30 AM – 12:00 PM</p>
-          <p>Tue–Sun 7:30 AM – 10:00 PM</p>
+          <a className="underline underline-offset-2" href={SALON_INFO.links.googleDirections} target="_blank" rel="noopener noreferrer">Get directions</a>
         </div>
         <ul className="space-y-1 text-sm font-semibold">
           <li>
             <a className="underline underline-offset-2" href={SALON_INFO.instagram.url} target="_blank" rel="noopener noreferrer">
               {SALON_INFO.instagram.handle}
-            </a>
-          </li>
-          <li>
-            <a className="underline underline-offset-2" href={SALON_INFO.owner.instagramUrl} target="_blank" rel="noopener noreferrer">
-              {SALON_INFO.owner.handle}
             </a>
           </li>
           <li>

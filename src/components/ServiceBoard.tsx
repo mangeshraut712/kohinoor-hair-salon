@@ -9,14 +9,14 @@ export function ServiceBoard() {
   const tabs = [{ id: 'all', title: 'All' }, ...SERVICE_BOARD.map((c) => ({ id: c.id, title: c.title }))];
 
   return (
-    <section id="services" aria-labelledby="services-title" className="border-b border-rule bg-parchment">
+    <section id="services" tabIndex={-1} aria-labelledby="services-title" className="border-b border-rule bg-parchment">
       <div className="mx-auto max-w-6xl px-4 py-14">
         <p className="eyebrow">Service Board</p>
         <h2 id="services-title" className="mt-2 text-3xl font-bold text-oxblood md:text-4xl">
           Hair | Skin
         </h2>
         <p className="mt-3 max-w-2xl text-muted">
-          Rates are confirmed at the shop. We list no prices until the owner shares the menu.
+          Ask the shop about services and prices before you visit.
         </p>
         <div role="group" aria-label="Filter services" className="mt-6 flex flex-wrap gap-2">
           {tabs.map((t) => (

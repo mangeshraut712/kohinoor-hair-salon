@@ -9,42 +9,29 @@ export function ContactActions({ className = '' }: { className?: string }) {
   return (
     <div className={className}>
       <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-        {tel ? (
-          <a href={tel} className="btn btn-solid">
-            <Phone size={18} aria-hidden="true" /> Call the shop
-          </a>
-        ) : (
-          <a href="#appointment" className="btn btn-solid">
-            <Calendar size={18} aria-hidden="true" /> Send an inquiry
-          </a>
-        )}
         <a
           href={SALON_INFO.links.googleDirections}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn btn-line"
+          className="btn btn-solid"
         >
           <Navigation size={18} aria-hidden="true" /> Get Directions
         </a>
+        {tel ? (
+          <a href={tel} className="btn btn-line">
+            <Phone size={18} aria-hidden="true" /> Call the shop
+          </a>
+        ) : (
+          <a href="#appointment" className="btn btn-line">
+            <Calendar size={18} aria-hidden="true" /> Message the shop
+          </a>
+        )}
         {wa ? (
           <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-line">
             <MessageCircle size={18} aria-hidden="true" /> WhatsApp
           </a>
         ) : null}
       </div>
-      {tel ? null : (
-        <p className="mt-3 text-sm">
-          Number pending — message{' '}
-          <a
-            href={SALON_INFO.instagram.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold underline underline-offset-2"
-          >
-            {SALON_INFO.instagram.handle}
-          </a>
-        </p>
-      )}
     </div>
   );
 }

@@ -5,11 +5,9 @@ import { SALON_INFO } from '@/data/salon';
 
 const LINKS = [
   { href: '#services', label: 'Services' },
-  { href: '#owner', label: 'Owner' },
   { href: '#instagram', label: 'Instagram' },
-  { href: '#reviews-hours', label: 'Hours' },
   { href: '#location', label: 'Location' },
-  { href: '#appointment', label: 'Book' },
+  { href: '#appointment', label: 'Contact' },
 ];
 
 export function MastheadNav() {
@@ -17,7 +15,12 @@ export function MastheadNav() {
   const closeMenu = () => menu.current?.removeAttribute('open');
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeMenu();
+      const details = menu.current;
+      if (e.key === 'Escape' && details?.open && details.contains(document.activeElement)) {
+        e.preventDefault();
+        details.open = false;
+        details.querySelector('summary')?.focus();
+      }
     };
     const onPointer = (e: Event) => {
       if (menu.current && !menu.current.contains(e.target as Node)) closeMenu();
@@ -59,7 +62,7 @@ export function MastheadNav() {
             className="absolute right-0 mt-2 flex max-h-[calc(100dvh-8.5rem)] w-48 flex-col overflow-y-auto border border-oxblood-line bg-oxblood p-2"
           >
             {LINKS.map((l) => (
-              <a key={l.href} href={l.href} onClick={closeMenu} className="px-3 py-2 text-sm font-semibold hover:bg-oxblood-dark">
+              <a key={l.href} href={l.href} onClick={() => { closeMenu(); document.getElementById(l.href.slice(1))?.focus({ preventScroll: true }); }} className="px-3 py-2 text-sm font-semibold hover:bg-oxblood-dark">
                 {l.label}
               </a>
             ))}

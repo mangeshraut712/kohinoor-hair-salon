@@ -27,33 +27,18 @@ export const SALON_INFO = {
   whatsapp: null as string | null,
   /** TODO-for-owner: path under /public of Sagar's real, permitted shop photo. */
   heroPhotoUrl: null as string | null,
-  /** TODO-for-owner: confirmed staff beyond the owner. */
-  staff: null as string[] | null,
-  /** TODO-for-owner: real, owner-approved review quotes. */
-  reviewQuotes: null as string[] | null,
-  owner: {
-    name: 'Sagar Kale',
-    handle: '@sagar._7716',
-    bio: 'Professional Hair Artist · Owner @thekohinoorsalon',
-    instagramUrl: 'https://www.instagram.com/sagar._7716/',
-  },
   instagram: {
     name: 'Kohinoor Salon',
     handle: '@the_kohinoor_salon',
     url: 'https://www.instagram.com/the_kohinoor_salon/',
-    followers: 1171,
-    posts: 182,
   },
   google: {
     kgmid: '/g/11fj45w_w0',
     listingUrl: 'https://www.google.com/search?kgmid=/g/11fj45w_w0&q=The+Kohinoor+Ac+salon',
-    rating: 4.5,
-    reviewCount: 49,
   },
   links: {
-    googleDirections: 'https://www.google.com/maps/dir/?api=1&destination=18.571585,73.793096',
+    googleDirections: 'https://maps.app.goo.gl/141XQMZtooLVQQN29?g_st=ic',
     appleDirections: 'https://maps.apple.com/?daddr=18.571585,73.793096&q=The+Kohinoor+AC+Salon',
-    mapEmbed: 'https://maps.google.com/maps?q=18.571585,73.793096&z=17&output=embed',
   },
 } as const;
 
@@ -69,7 +54,7 @@ export const SERVICE_BOARD: readonly ServiceCategory[] = [
   {
     id: 'hair',
     title: 'Hair & Cuts',
-    blurb: 'Men’s hair, the first half of the shop’s “Hair | Skin” focus. Specific services are confirmed at the shop.',
+    blurb: 'Ask the shop about cuts and styling.',
     items: [
       { name: 'Hair', priceInr: null },
     ],
@@ -77,7 +62,7 @@ export const SERVICE_BOARD: readonly ServiceCategory[] = [
   {
     id: 'beard',
     title: 'Beard & Shave',
-    blurb: 'Beard and shave. Specific services are confirmed at the shop.',
+    blurb: 'Ask about beard grooming.',
     items: [
       { name: 'Beard & Shave', priceInr: null },
     ],
@@ -85,7 +70,7 @@ export const SERVICE_BOARD: readonly ServiceCategory[] = [
   {
     id: 'skin',
     title: 'Skin & Grooming',
-    blurb: 'Skin, the second half of the shop’s “Hair | Skin” focus. Specific services are confirmed at the shop.',
+    blurb: 'Ask the shop about skin grooming.',
     items: [
       { name: 'Skin', priceInr: null },
     ],
@@ -93,30 +78,3 @@ export const SERVICE_BOARD: readonly ServiceCategory[] = [
 ];
 
 export const RATE_LABEL = 'Rate confirmed at shop';
-
-export interface HoursRow {
-  day: string;
-  short: string;
-  hours: string;
-  note?: string;
-}
-
-export const MONDAY_HOURS_NOTE = 'Please verify the afternoon schedule with the shop.';
-
-export const HOURS_SCHEDULE: readonly HoursRow[] = [
-  { day: 'Monday', short: 'Mon', hours: '7:30 AM – 12:00 PM', note: MONDAY_HOURS_NOTE },
-  { day: 'Tuesday', short: 'Tue', hours: '7:30 AM – 10:00 PM' },
-  { day: 'Wednesday', short: 'Wed', hours: '7:30 AM – 10:00 PM' },
-  { day: 'Thursday', short: 'Thu', hours: '7:30 AM – 10:00 PM' },
-  { day: 'Friday', short: 'Fri', hours: '7:30 AM – 10:00 PM' },
-  { day: 'Saturday', short: 'Sat', hours: '7:30 AM – 10:00 PM' },
-  { day: 'Sunday', short: 'Sun', hours: '7:30 AM – 10:00 PM' },
-];
-
-export const TIME_SLOTS = [
-  'Morning (7:30 AM – 12:00 PM)',
-  'Afternoon (12:00 – 4:00 PM)',
-  'Evening (4:00 – 10:00 PM)',
-] as const;
-
-export const DAYS = ['Any day', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as const;

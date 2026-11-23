@@ -7,13 +7,13 @@ const fraunces = Fraunces({ subsets: ['latin'], display: 'swap', variable: '--fo
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], display: 'swap', variable: '--font-jakarta' });
 
 const description =
-  'Men’s hair and skin grooming at The Kohinoor AC Salon, Shivaji Chowk, Sharda Colony, Pimple Nilakh, Pune 411027. Rated 4.5 from 49 Google reviews.';
+  'Men’s hair and skin grooming at The Kohinoor AC Salon, Shivaji Chowk, Sharda Colony, Pimple Nilakh, Pune 411027.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: 'The Kohinoor AC Salon | Men’s Hair & Skin, Pimple Nilakh, Pune',
   description,
-  alternates: { canonical: '/' },
+  ...(process.env.KOHINOOR_PREVIEW === '1' ? { robots: { index: false, follow: false } } : { alternates: { canonical: '/' } }),
   openGraph: {
     title: 'The Kohinoor AC Salon | Pimple Nilakh, Pune',
     description,
@@ -52,26 +52,6 @@ function buildJsonLd() {
       longitude: SALON_INFO.geo.longitude,
     },
     hasMap: SALON_INFO.links.googleDirections,
-    openingHoursSpecification: [
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: 'Monday',
-        opens: '07:30',
-        closes: '12:00',
-      },
-      {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '07:30',
-        closes: '22:00',
-      },
-    ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: SALON_INFO.google.rating,
-      reviewCount: SALON_INFO.google.reviewCount,
-      bestRating: 5,
-    },
     sameAs: [SALON_INFO.instagram.url, SALON_INFO.google.listingUrl],
   };
   if (SALON_INFO.phone) ld.telephone = `+${SALON_INFO.phone.replace(/\D/g, '')}`;

@@ -1,23 +1,19 @@
-# The Kohinoor AC Salon — Pimple Nilakh, Pune
+# The Kohinoor AC Salon · Pimple Nilakh, Pune
 
-Static small-business website for **The Kohinoor AC Salon** (`@the_kohinoor_salon`), a men's hair and skin grooming shop at **Shivaji Chowk, near Bhavani Sweet Home, Sharda Colony, Pimple Nilakh, Pimpri-Chinchwad, Pune 411027**, owned by **Sagar Kale** (`@sagar._7716`).
+Mobile-first small-business website and service board. Cream and oxblood shop-sign design, with direct directions and the salon’s Instagram. No accounts, analytics, booking backend or embedded maps.
 
-## Design & Content Principles
+## Verify and build
 
-- **Verified facts only:** Business details, address, hours, rating, and social links come exclusively from verified public listings (`CONTENT.md`). Unverified details (phone/WhatsApp number, exact ₹ service prices, staff roster, and shop photography) are explicitly tracked as `TODO-for-owner`.
-- **Visual identity:** Cream (`#FAF6EE`) and oxblood (`#5A141E`) shop-sign typography, readable service board, prominent mobile Call & Directions actions, one dedicated hero slot for a real owner photo, and an appointment inquiry flow modeled on `mangeshraut712/kashishbeautyparlour`.
-- **Static & fast:** Next.js static export (`output: 'export'`) outputting to `out-cloudflare/` for Cloudflare Pages preview hosting.
+Use Node 22 or the supported Node 24 LTS release.
 
-## Local Development & Verification
-
-```bash
-npm install
+```sh
+npm ci
 npm run lint
 npm run type-check
-npm test
 npm run build:cloudflare
+npm test
 ```
 
-## Spec-Driven Workflow
+Deploy only the tested `out-cloudflare/` directory to the existing Cloudflare Pages project. For a different HTTPS production origin, set `CLOUDFLARE_SITE_URL` to that origin for the build and tests. To verify a non-indexable preview export, run the build and tests with `KOHINOOR_PREVIEW=1`; use access protection separately if the preview must be private.
 
-Specifications, steering documents, and build tasks live under `.kiro/steering/` and `.kiro/specs/kohinoor-website/`.
+See [RELEASE.md](RELEASE.md) for release and maintenance gates, and [CONTENT.md](CONTENT.md) for business details. Older Kiro spec/evidence files document the initial design; the release plan and fact ledger describe what ships.

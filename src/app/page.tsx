@@ -1,11 +1,9 @@
-import { AppointmentInquiry } from '@/components/AppointmentInquiry';
+import { ShopContact } from '@/components/ShopContact';
 import { HeroShopSign } from '@/components/HeroShopSign';
 import { InstagramShowcase } from '@/components/InstagramShowcase';
 import { LocationAndDirections } from '@/components/LocationAndDirections';
 import { MastheadNav } from '@/components/MastheadNav';
 import { MobileActionDock } from '@/components/MobileActionDock';
-import { OwnerAndCraft } from '@/components/OwnerAndCraft';
-import { ReviewsAndHours } from '@/components/ReviewsAndHours';
 import { SalonFooter } from '@/components/SalonFooter';
 import { ServiceBoard } from '@/components/ServiceBoard';
 
@@ -19,14 +17,12 @@ export default function HomePage() {
         Skip to content
       </a>
       <MastheadNav />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <HeroShopSign />
         <ServiceBoard />
-        <OwnerAndCraft />
         <InstagramShowcase />
-        <ReviewsAndHours />
         <LocationAndDirections />
-        <AppointmentInquiry />
+        <ShopContact />
       </main>
       <SalonFooter />
       <MobileActionDock />
