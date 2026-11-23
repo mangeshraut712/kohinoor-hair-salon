@@ -17,6 +17,9 @@ for (const viewport of dimensions) {
     const response = await page.goto('/');
     expect(response?.ok()).toBe(true);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('The Kohinoor');
+    const brand = page.getByRole('banner').getByRole('link', { name: 'The Kohinoor AC Salon' });
+    await expect(brand.locator('img')).toBeVisible();
+    await expect.poll(() => brand.locator('img').evaluate((img) => (img as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
     await expect(page.locator('p[lang="mr"]')).toHaveText('द कोहिनूर एसी सलून (पिंपळे निलख)');
     await expect(page.getByRole('link', { name: 'Call +91 97640 48382' })).toHaveAttribute('href', 'tel:+919764048382');
     await expect(page.locator('#appointment dd').last()).toHaveText('Closed');

@@ -47,12 +47,19 @@ test('directions is the first mobile quick action and primary hero CTA', () => {
   assert.match(visible, /href="https:\/\/maps\.app\.goo\.gl[^"]+"[^>]*class="btn btn-solid"/);
 });
 
-test('shop-sign brand mark is discoverable as a local tab icon', () => {
+test('salon scissor favicon and supplied navbar badge are packaged locally', () => {
   const icon = html.match(/rel="icon" href="(\/[^"?]+)(?:\?[^"]*)?"/);
   assert.ok(icon, 'head must link the shop icon');
   const svg = read(icon[1].slice(1));
   assert.match(svg, /<svg\b/);
-  assert.match(svg, /#5A141E/);
+  assert.match(svg, /Scissor K emblem/);
+  assert.match(svg, /#FF2400/);
+  const badge = readFileSync(resolve(root, 'brand/kohinoor-emblem.webp'));
+  assert.equal(badge.subarray(8, 12).toString(), 'WEBP');
+  assert.ok(badge.length < 20_000);
+  const header = visible.match(/<header[^>]*>(.*?)<\/header>/s)[1];
+  assert.match(header, /<img[^>]*alt=""[^>]*src="\/brand\/kohinoor-emblem\.webp"/);
+  assert.match(header, /href="#top"/);
 });
 
 test('approved business identity, address, phone and hours agree with the page', () => {
