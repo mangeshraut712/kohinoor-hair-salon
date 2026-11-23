@@ -1,26 +1,87 @@
-# The Kohinoor AC Salon · Pimple Nilakh, Pune
+<p align="center"><img src="public/brand/kohinoor-emblem.webp" width="112" height="112" alt=""></p>
 
-A mobile-first site that helps customers find the salon and message its business Instagram. The cream-and-oxblood design takes its cues from shop signage. There are no accounts, embedded maps, analytics, or booking forms.
+<h1 align="center">The Kohinoor AC Salon</h1>
 
-**Selected production address (older build currently live):** [kohinoorsalon.vercel.app](https://kohinoorsalon.vercel.app/)
+<p align="center" lang="mr">द कोहिनूर एसी सलून (पिंपळे निलख)</p>
 
-## Start here
+<p align="center"><strong>Men’s haircuts, beard grooming, and skin care · Pimple Nilakh, Pune</strong></p>
 
-- [Shop owner handover](docs/OWNER-HANDOVER.md): what the site does, what to check, and how to request changes.
-- [Business facts](docs/CONTENT.md): approved listing information and what stays unpublished.
-- [Maintainer handbook](docs/MAINTAINERS.md): build, test, publish, and roll back.
-- [Release plan](docs/RELEASE.md): launch scope and gates.
+<p align="center">
+  <a href="https://kohinoorsalon.vercel.app/"><strong>Salon website</strong></a> ·
+  <a href="https://maps.app.goo.gl/141XQMZtooLVQQN29?g_st=ic">Directions</a> ·
+  <a href="https://www.instagram.com/the_kohinoor_salon/">Instagram</a>
+</p>
 
-## Verify and build
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16-171717?style=flat-square&amp;logo=nextdotjs" alt="Next.js 16">
+  <img src="https://img.shields.io/badge/TypeScript-5.9-234E7A?style=flat-square&amp;logo=typescript" alt="TypeScript 5.9">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4-0F6474?style=flat-square&amp;logo=tailwindcss" alt="Tailwind CSS 4">
+  <a href="https://github.com/mangeshraut712/kohinoor-hair-salon/actions/workflows/ci.yml"><img src="https://github.com/mangeshraut712/kohinoor-hair-salon/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status on main"></a>
+</p>
 
-Use Node.js 22, which is the CI baseline, or supported Node.js 24 LTS.
+## Visit Kohinoor
 
-```sh
+Kohinoor is a men’s salon at Shivaji Chowk in Pimple Nilakh. The website makes the essentials easy to find on a phone: what the salon offers, when it’s open, where to go, and how to ask the shop about availability or prices.
+
+| | Details |
+| --- | --- |
+| **Services** | Men’s haircuts and styling, beard and shave, skin and grooming |
+| **Hours** | Sunday and Tuesday–Saturday, 7:30 AM–10:00 PM IST. **Monday closed.** |
+| **Call** | +91 97640 48382. Voice calls only; WhatsApp is not listed. |
+| **Address** | Shivaji Chowk, near Bhavani Sweet Home, Main Road Gavthan, Pimple Nilakh, Pimpri-Chinchwad, Pune 411027, Maharashtra |
+| **Find us** | [Open the shop pin in Google Maps](https://maps.app.goo.gl/141XQMZtooLVQQN29?g_st=ic) |
+
+### Looking for women’s beauty services?
+
+Visit [Kashish Beauty Parlour & Training Center](https://mangeshraut712.github.io/kashishbeautyparlour/) in Thergaon, Pune. Kohinoor focuses on men’s grooming; Kashish focuses on women’s beauty services. They are separate shops. Use the relevant shop’s site for service and contact details. [Kashish source repository](https://github.com/mangeshraut712/kashishbeautyparlour).
+
+## What the site does
+
+| Area | What’s in the repository |
+| --- | --- |
+| **Shop identity** | Cream-and-oxblood shop-sign design, the supplied scissor-K logo, and the Marathi shop name |
+| **Service board** | Filterable cards for hair, beard and skin; no unconfirmed prices or online booking |
+| **Mobile shortcuts** | Directions and Call stay close at hand. The menu scrolls to each section and supports keyboard navigation. |
+| **Local search** | Business name, address, hours and phone in structured data, plus a canonical URL, sitemap and robots file |
+| **Privacy** | No customer account, embedded map, analytics, or booking form. Calling, Maps and Instagram open separately. |
+
+> **Release status:** The public address currently serves the previous build. The updated logo, contact details and verified hours are in this repository. Automatic Vercel production builds from `main` are paused.
+
+## Run locally
+
+Use Node.js 22, the CI baseline, or Node.js 24 LTS. No API keys or database are required.
+
+```bash
+git clone https://github.com/mangeshraut712/kohinoor-hair-salon.git
+cd kohinoor-hair-salon
 npm ci
-npm run lint
-npm run type-check
-npm run build:cloudflare
-npm test
+npm run dev
 ```
 
-Serve the generated `out-cloudflare/` directory to review locally. This is a build folder, not a live site. See the maintainer handbook before making a hosted preview or publishing. Older Kiro notes document the initial design; the current fact ledger and release plan govern what ships.
+Open [localhost:3000](http://localhost:3000/).
+
+### Verify a release
+
+```bash
+npm run lint
+npm run type-check
+npm run build
+npm test
+npm start
+```
+
+The build writes a static export to `out-cloudflare/`. The local release preview runs on [localhost:4173](http://localhost:4173/). The browser suite also checks mobile, tablet and desktop layouts in Chromium, Firefox and WebKit:
+
+```bash
+npx playwright install chromium firefox webkit
+npm run test:browser
+```
+
+Stop the local release preview before starting the browser suite, which starts its own server on port 4173.
+
+## Owner and maintainer docs
+
+- [Shop owner handover](docs/OWNER-HANDOVER.md): what customers can do and how to request changes.
+- [Business facts](docs/CONTENT.md): approved details and what stays unpublished.
+- [Maintainer handbook](docs/MAINTAINERS.md): testing, hosting, and rollback.
+- [Release plan](docs/RELEASE.md): checks to complete before publishing.
