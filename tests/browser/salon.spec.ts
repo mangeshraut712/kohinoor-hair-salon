@@ -32,10 +32,11 @@ for (const viewport of dimensions) {
   });
 }
 
-test('keyboard skip link, escape, and mobile menu keep focus usable', async ({ page }) => {
+test('keyboard skip link, escape, and mobile menu keep focus usable', async ({ page, browserName }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
-  await page.keyboard.press('Tab');
+  // macOS WebKit defaults to Option+Tab to reach links.
+  await page.keyboard.press(browserName === 'webkit' && process.platform === 'darwin' ? 'Alt+Tab' : 'Tab');
   await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.getByRole('main')).toBeFocused();

@@ -40,3 +40,5 @@ npm run test:browser
 ```
 
 On Linux CI use `npx playwright install --with-deps <engine>` to include system libraries. The automation tests viewport sizes, not device-specific Maps app routing. Keep the manual device gate.
+
+On macOS Safari, use Option+Tab to reach links with the browser’s default keyboard preference, or Tab when “Press Tab to highlight each item on a webpage” is enabled. See [Apple’s keyboard shortcut guide](https://support.apple.com/guide/safari/keyboard-and-other-shortcuts-cpsh003/mac).
