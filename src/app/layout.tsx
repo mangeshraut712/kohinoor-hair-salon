@@ -8,7 +8,13 @@ const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], display: 'swap', variabl
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  icons: { icon: { url: '/brand/kohinoor-emblem.webp', type: 'image/webp', sizes: '160x160' } },
+  icons: {
+    icon: [
+      { url: '/brand/kohinoor-emblem.webp', type: 'image/webp', sizes: '160x160' },
+      { url: '/favicon.ico', sizes: '48x48' },
+    ],
+    apple: { url: '/apple-touch-icon.png', sizes: '180x180' },
+  },
 };
 
 export const viewport: Viewport = {

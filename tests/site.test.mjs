@@ -44,7 +44,7 @@ test('data: pending owner fields are null and prices are not invented', () => {
 
 test('export: required files exist', () => {
   needOut();
-  for (const f of ['index.html', 'robots.txt', 'sitemap.xml']) {
+  for (const f of ['index.html', 'robots.txt', 'sitemap.xml', 'favicon.ico', 'apple-touch-icon.png']) {
     assert.ok(existsSync(join(out, f)), `${f} missing`);
   }
   if (process.env.KOHINOOR_PREVIEW === '1') return;
