@@ -46,3 +46,11 @@ test('directions is the first mobile quick action and primary hero CTA', () => {
   assert.match(dock, /^<a[^>]*href="https:\/\/maps\.app\.goo\.gl/);
   assert.match(visible, /href="https:\/\/maps\.app\.goo\.gl[^"]+"[^>]*class="btn btn-solid"/);
 });
+
+test('shop-sign brand mark is discoverable as a local tab icon', () => {
+  const icon = html.match(/rel="icon" href="(\/[^"?]+)(?:\?[^"]*)?"/);
+  assert.ok(icon, 'head must link the shop icon');
+  const svg = read(icon[1].slice(1));
+  assert.match(svg, /<svg\b/);
+  assert.match(svg, /#5A141E/);
+});

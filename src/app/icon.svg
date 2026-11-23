@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Kohinoor shop mark</title>
+  <path fill="#5A141E" d="M0 0h64v64H0z"/>
+  <path fill="none" stroke="#FAF6EE" stroke-width="2" d="m32 5 27 27-27 27L5 32z"/>
+  <path fill="#FAF6EE" d="M21 19h10v3h-3v9l10-9h-3v-3h11v3h-4l-9 8 11 12h3v3H34v-3h3l-9-10v10h3v3H21v-3h3V22h-3z"/>
+</svg>

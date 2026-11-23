@@ -8,7 +8,7 @@ const out = join(root, 'out-cloudflare');
 const read = (p) => readFileSync(join(root, p), 'utf8');
 
 const salon = read('src/data/salon.ts');
-const content = read('CONTENT.md');
+const content = read('docs/CONTENT.md');
 const needOut = () =>
   assert.ok(existsSync(join(out, 'index.html')), 'Run `npm run build:cloudflare` before `npm test`.');
 const html = () => (needOut(), readFileSync(join(out, 'index.html'), 'utf8').replace(/<!-- -->/g, ''));

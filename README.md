@@ -1,10 +1,17 @@
 # The Kohinoor AC Salon · Pimple Nilakh, Pune
 
-Mobile-first small-business website and service board. Cream and oxblood shop-sign design, with direct directions and the salon’s Instagram. No accounts, analytics, booking backend or embedded maps.
+A mobile-first site that helps customers find the salon and message its business Instagram. The cream-and-oxblood design takes its cues from shop signage. There are no accounts, embedded maps, analytics, or booking forms.
+
+## Start here
+
+- [Shop owner handover](docs/OWNER-HANDOVER.md): what the site does, what to check, and how to request changes.
+- [Business facts](docs/CONTENT.md): approved listing information and what stays unpublished.
+- [Maintainer handbook](docs/MAINTAINERS.md): build, test, publish, and roll back.
+- [Release plan](docs/RELEASE.md): launch scope and gates.
 
 ## Verify and build
 
-Use Node 22 or the supported Node 24 LTS release.
+Use Node.js 22, which is the CI baseline, or supported Node.js 24 LTS.
 
 ```sh
 npm ci
@@ -14,6 +21,4 @@ npm run build:cloudflare
 npm test
 ```
 
-Deploy only the tested `out-cloudflare/` directory to the existing Cloudflare Pages project. For a different HTTPS production origin, set `CLOUDFLARE_SITE_URL` to that origin for the build and tests. To verify a non-indexable preview export, run the build and tests with `KOHINOOR_PREVIEW=1`; use access protection separately if the preview must be private.
-
-See [RELEASE.md](RELEASE.md) for release and maintenance gates, and [CONTENT.md](CONTENT.md) for business details. Older Kiro spec/evidence files document the initial design; the release plan and fact ledger describe what ships.
+Serve the generated `out-cloudflare/` directory to review locally. This is a build folder, not a live site. See the maintainer handbook before making a hosted preview or publishing. Older Kiro notes document the initial design; the current fact ledger and release plan govern what ships.

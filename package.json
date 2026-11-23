@@ -7,10 +7,11 @@
     "dev": "next dev",
     "build": "npm run build:cloudflare",
     "build:cloudflare": "node scripts/build-cloudflare.mjs",
-    "start": "npx serve out-cloudflare",
+    "start": "node scripts/serve-export.mjs",
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "playwright test"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.14",
@@ -20,6 +21,8 @@
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.65.1",
     "@types/node": "^24.0.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",

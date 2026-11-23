@@ -7,3 +7,9 @@ out-cloudflare/
 .env
 .env.local
 next-env.d.ts
+
+# Generated metadata and browser test output
+*.tsbuildinfo
+playwright-report/
+test-results/
+.npm-release/

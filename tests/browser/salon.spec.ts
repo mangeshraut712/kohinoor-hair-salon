@@ -1,0 +1,74 @@
+import { expect, test } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
+
+const dimensions = [
+  { width: 320, height: 640 },
+  { width: 390, height: 844 },
+  { width: 768, height: 1024 },
+  { width: 1024, height: 768 },
+  { width: 1440, height: 900 },
+];
+
+for (const viewport of dimensions) {
+  test(`shop is usable at ${viewport.width}×${viewport.height}`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    const errors: string[] = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    const response = await page.goto('/');
+    expect(response?.ok()).toBe(true);
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('The Kohinoor');
+    await expect(page.getByRole('link', { name: 'Google Maps directions' })).toHaveAttribute('href', /maps\.app\.goo\.gl\/141XQMZtooLVQQN29/);
+    await expect(page.getByRole('link', { name: 'Open shop Instagram' })).toHaveAttribute('href', 'https://www.instagram.com/the_kohinoor_salon/');
+    await page.evaluate(() => document.fonts.ready.then(() => undefined));
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(viewport.width);
+    const dock = page.getByRole('navigation', { name: 'Quick actions' });
+    if (viewport.width < 768) {
+      await expect(dock).toBeVisible();
+      await expect(dock.getByRole('link', { name: 'Directions' })).toBeInViewport();
+    } else {
+      await expect(dock).toBeHidden();
+    }
+    expect(errors).toEqual([]);
+  });
+}
+
+test('keyboard skip link, escape, and mobile menu keep focus usable', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.getByRole('main')).toBeFocused();
+  const menu = page.locator('summary').filter({ hasText: 'Menu' });
+  const nav = page.getByRole('navigation', { name: 'Primary mobile' });
+  await menu.press('Enter');
+  await expect(nav).toBeVisible();
+  const services = nav.getByRole('link', { name: 'Services' });
+  await services.press('Escape');
+  await expect(nav).toBeHidden();
+  await expect(menu).toBeFocused();
+  await menu.press('Enter');
+  await nav.getByRole('link', { name: 'Location' }).press('Enter');
+  await expect(nav).toBeHidden();
+  await expect(page.getByRole('region', { name: 'Shivaji Chowk, Pimple Nilakh' })).toBeFocused();
+  await expect(page).toHaveURL(/#location$/);
+});
+
+test('service board switches categories and resets to all', async ({ page }) => {
+  await page.goto('/');
+  const group = page.getByRole('group', { name: 'Filter services' });
+  await group.getByRole('button', { name: 'Hair & Cuts' }).click();
+  await expect(group.getByRole('button', { name: 'Hair & Cuts' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('article')).toHaveCount(1);
+  await group.getByRole('button', { name: 'All', exact: true }).click();
+  await expect(page.getByRole('article')).toHaveCount(3);
+});
+
+for (const width of [390, 1440]) {
+  test(`axe WCAG A/AA checks at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto('/');
+    const report = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
+    expect(report.violations.map(({ id, nodes }) => ({ id, selectors: nodes.map((node) => node.target) }))).toEqual([]);
+  });
+}
