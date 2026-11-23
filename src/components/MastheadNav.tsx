@@ -62,7 +62,7 @@ export function MastheadNav() {
             className="absolute right-0 mt-2 flex max-h-[calc(100dvh-8.5rem)] w-48 flex-col overflow-y-auto border border-oxblood-line bg-oxblood p-2"
           >
             {LINKS.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => { closeMenu(); document.getElementById(l.href.slice(1))?.focus({ preventScroll: true }); }} className="px-3 py-2 text-sm font-semibold hover:bg-oxblood-dark">
+              <a key={l.href} href={l.href} onClick={() => { closeMenu(); const id = l.href.slice(1); requestAnimationFrame(() => { const target = document.getElementById(id); target?.scrollIntoView({ block: 'start' }); target?.focus({ preventScroll: true }); }); }} className="px-3 py-2 text-sm font-semibold hover:bg-oxblood-dark">
                 {l.label}
               </a>
             ))}
