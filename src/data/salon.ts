@@ -66,7 +66,7 @@ export const SERVICE_BOARD: readonly ServiceCategory[] = [
   {
     id: 'hair',
     title: 'Hair & Cuts',
-    blurb: 'Ask the shop about cuts and styling.',
+    blurb: 'Bring a reference photo or describe how much length you want to keep.',
     items: [
       { name: 'Hair', priceInr: null },
     ],
@@ -74,7 +74,7 @@ export const SERVICE_BOARD: readonly ServiceCategory[] = [
   {
     id: 'beard',
     title: 'Beard & Shave',
-    blurb: 'Ask about beard grooming.',
+    blurb: 'Tell the barber where you want the neckline and how much beard length to keep.',
     items: [
       { name: 'Beard & Shave', priceInr: null },
     ],
@@ -82,7 +82,7 @@ export const SERVICE_BOARD: readonly ServiceCategory[] = [
   {
     id: 'skin',
     title: 'Skin & Grooming',
-    blurb: 'Ask the shop about skin grooming.',
+    blurb: 'Ask which grooming options are available and mention any skin sensitivities.',
     items: [
       { name: 'Skin', priceInr: null },
     ],

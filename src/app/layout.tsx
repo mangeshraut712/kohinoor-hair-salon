@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     siteName: SALON_INFO.name,
     locale: 'en_IN',
     type: 'website',
+    images: [{ url: '/brand/kohinoor-emblem.webp', width: 160, height: 160, alt: SALON_INFO.name }],
   },
   twitter: { card: 'summary', title: SALON_INFO.name, description },
 };
@@ -40,6 +41,7 @@ function buildJsonLd() {
     name: SALON_INFO.listingName,
     alternateName: SALON_INFO.marathiName,
     telephone: SALON_INFO.phone,
+    image: new URL('/brand/kohinoor-emblem.webp', SITE_URL).href,
     openingHoursSpecification: [{
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: SALON_INFO.hours.openDays,

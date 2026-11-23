@@ -25,11 +25,13 @@ function HeroPhotoSlot() {
     <aside aria-label="Salon opening hours" className="shop-placard">
       <div className="shop-placard-inner">
         <Image src="/brand/kohinoor-emblem.webp" alt="" width={104} height={104} className="mx-auto rounded-full" />
-        <h2 className="mt-5 font-display text-4xl">Shop hours</h2>
-        <p className="mt-3 text-sm">{hours.openDaysLabel}</p>
-        <p className="my-2 font-display text-3xl">{hours.display}</p>
-        <p className="text-sm">{hours.closedDay} closed</p>
-        <p className="mt-6 border-t border-current/40 pt-4 text-xs font-bold uppercase tracking-widest">{address.locality} · Pune</p>
+        <div className="placard-hours">
+          <h2 className="font-display text-3xl md:text-4xl">Shop hours</h2>
+          <p className="mt-2 text-sm">{hours.openDaysLabel}</p>
+          <p className="my-1 font-display text-xl sm:text-3xl">{hours.display}</p>
+          <p className="text-sm">{hours.closedDay} closed</p>
+        </div>
+        <p className="placard-locality border-t border-current/40 pt-3 text-xs font-bold uppercase tracking-widest">{address.locality} · Pune</p>
       </div>
     </aside>
   );

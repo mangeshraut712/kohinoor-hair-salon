@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { RATE_LABEL, SERVICE_BOARD } from '@/data/salon';
+import { RATE_LABEL, SALON_INFO, SERVICE_BOARD } from '@/data/salon';
 
 export function ServiceBoard() {
   const [filter, setFilter] = useState<string>('all');
@@ -16,7 +16,7 @@ export function ServiceBoard() {
           Hair, beard &amp; skin
         </h2>
         <p className="mt-3 max-w-2xl text-muted">
-          Ask the shop about services and prices before you visit.
+          {RATE_LABEL}. <a href={`tel:${SALON_INFO.phone}`} className="font-semibold underline underline-offset-4">Call ahead for a quote</a>.
         </p>
         <div role="group" aria-label="Filter services" className="mt-6 flex flex-wrap gap-2">
           {tabs.map((t) => (
@@ -36,7 +36,7 @@ export function ServiceBoard() {
             <article key={c.id} className="border-t-4 border-oxblood bg-cream p-6">
               <h3 className="pb-2 font-display text-2xl font-bold text-oxblood">{c.title}</h3>
               <p className="mt-3 text-sm text-muted">{c.blurb}</p>
-              <ul className="mt-4 divide-y divide-rule">
+              {c.items.some((item) => item.priceInr !== null) && <ul className="mt-4 divide-y divide-rule">
                 {c.items.map((i) => (
                   <li key={i.name} className="flex items-baseline justify-between gap-3 py-2 [&>*]:min-w-0">
                     <span className="font-semibold">{i.name}</span>
@@ -45,7 +45,7 @@ export function ServiceBoard() {
                     </span>
                   </li>
                 ))}
-              </ul>
+              </ul>}
             </article>
           ))}
         </div>

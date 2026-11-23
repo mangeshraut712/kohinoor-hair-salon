@@ -20,6 +20,9 @@ export default function HomePage() {
       <main id="main-content" tabIndex={-1}>
         <HeroShopSign />
         <ServiceBoard />
+        <InstagramShowcase />
+        <LocationAndDirections />
+        <ShopContact />
         <aside aria-labelledby="kashish-title" className="border-b border-rule bg-cream">
           <div className="mx-auto grid max-w-6xl gap-5 px-5 py-8 md:grid-cols-2 md:items-center">
             <div>
@@ -33,9 +36,6 @@ export default function HomePage() {
             </nav>
           </div>
         </aside>
-        <InstagramShowcase />
-        <LocationAndDirections />
-        <ShopContact />
       </main>
       <SalonFooter />
       <MobileActionDock />

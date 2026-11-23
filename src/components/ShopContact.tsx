@@ -7,8 +7,8 @@ export function ShopContact() {
       <div className="mx-auto grid [&>*]:min-w-0 max-w-6xl items-center gap-6 px-4 py-14 md:grid-cols-[1fr_auto]">
         <div>
           <p className="eyebrow">Before you visit</p>
-          <h2 id="appointment-title" className="mt-2 text-3xl font-bold text-oxblood md:text-4xl">Ask the shop</h2>
-          <p className="mt-3 max-w-xl text-muted">Call or message the salon about services, prices, or availability. The shop can confirm a time with you directly.</p>
+          <h2 id="appointment-title" className="mt-2 text-3xl font-bold text-oxblood md:text-4xl">Call before you visit</h2>
+          <p className="mt-3 max-w-xl text-muted">For a price or an available time, call during the hours below. You can also message the salon on Instagram.</p>
           <dl className="mt-5 space-y-2 text-sm" aria-label="Opening hours">
             <div className="flex flex-wrap gap-x-2">
               <dt className="font-semibold">{SALON_INFO.hours.openDaysLabel}</dt>

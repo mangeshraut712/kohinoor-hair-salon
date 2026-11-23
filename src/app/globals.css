@@ -23,9 +23,9 @@
   --color-oxblood-dark: var(--oxblood-dark);
   --color-oxblood-line: var(--oxblood-border);
   --color-rule: var(--rule);
-  --font-display: var(--font-display);
+  --font-display: var(--font-fraunces), Georgia, serif;
   --font-sans: var(--font-body);
-  --font-mono: var(--font-mono);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 html {
@@ -146,5 +146,22 @@ a, button, input, select, textarea, summary {
   .shop-placard {
     margin-inline: 1rem;
     box-shadow: 0.5rem 0.5rem 0 var(--bg-parchment);
+  }
+}
+
+.shop-placard-inner {
+  display: grid;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 47.99rem) {
+  .shop-placard-inner {
+    grid-template-columns: minmax(3rem, 1fr) 3fr;
+    text-align: left;
+  }
+  .placard-locality {
+    grid-column: 1 / -1;
+    text-align: center;
   }
 }

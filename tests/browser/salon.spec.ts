@@ -92,7 +92,7 @@ test('short landscape menu exposes Contact and scrolls it clear of the dock', as
     await nav.getByRole('link', { name: 'Contact' }).tap();
     await expect(page).toHaveURL(/#appointment$/);
     await expect(nav).toBeHidden();
-    const heading = page.getByRole('heading', { name: 'Ask the shop' });
+    const heading = page.getByRole('heading', { name: 'Call before you visit' });
     await expect(heading).toBeInViewport();
     await expect.poll(async () => heading.evaluate((h) => {
       const rect = h.getBoundingClientRect();
@@ -103,4 +103,11 @@ test('short landscape menu exposes Contact and scrolls it clear of the dock', as
   } finally {
     await context.close();
   }
+});
+
+test('missing page gives visitors a working route back to the salon', async ({ page }) => {
+  const response = await page.goto('/missing-salon-page');
+  expect(response?.status()).toBe(404);
+  await page.getByRole('link', { name: 'Salon home' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('The Kohinoor');
 });
