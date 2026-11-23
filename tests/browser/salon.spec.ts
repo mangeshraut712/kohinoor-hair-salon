@@ -111,3 +111,15 @@ test('missing page gives visitors a working route back to the salon', async ({ p
   await page.getByRole('link', { name: 'Salon home' }).click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('The Kohinoor');
 });
+
+test('default icon paths serve the shop badge, not the missing-page HTML', async ({ request }) => {
+  const favicon = await request.get('/favicon.ico');
+  expect(favicon.status()).toBe(200);
+  expect(favicon.headers()['content-type']).toMatch(/image\/(vnd\.microsoft\.icon|x-icon|icon)/);
+  expect(Buffer.from(await favicon.body()).subarray(0, 4).equals(Buffer.from([0, 0, 1, 0]))).toBe(true);
+
+  const touch = await request.get('/apple-touch-icon.png');
+  expect(touch.status()).toBe(200);
+  expect(touch.headers()['content-type']).toMatch(/image\/png/);
+  expect(Buffer.from(await touch.body()).subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))).toBe(true);
+});

@@ -48,14 +48,18 @@ test('directions is the first mobile quick action and primary hero CTA', () => {
 });
 
 test('favicon and masthead use the official README emblem', () => {
-  const icon = html.match(/rel="icon" href="(\/[^"?]+)(?:\?[^"]*)?"/);
-  assert.ok(icon, 'head must link the shop icon');
   const readme = readFileSync('README.md', 'utf8');
   const emblem = readme.match(/<img src="public(\/brand\/[^"]+)"/)?.[1];
-  assert.equal(icon[1], emblem, 'favicon must use the README emblem');
+  assert.ok(emblem, 'README must embed the shop badge');
+  assert.match(html, new RegExp(`rel="icon" href="${emblem.replaceAll('/', '\\/')}(?:\\?[^"]*)?"`));
   const badge = readFileSync(resolve(root, 'brand/kohinoor-emblem.webp'));
   assert.equal(badge.subarray(8, 12).toString(), 'WEBP');
   assert.ok(badge.length < 20_000);
+  const favicon = readFileSync(resolve(root, 'favicon.ico'));
+  assert.equal(favicon.subarray(0, 4).equals(Buffer.from([0, 0, 1, 0])), true, 'favicon.ico must be an ICO');
+  const touch = readFileSync(resolve(root, 'apple-touch-icon.png'));
+  assert.equal(touch.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])), true, 'apple-touch-icon.png must be a PNG');
+  assert.match(html, /rel="apple-touch-icon" href="\/apple-touch-icon\.png/);
   const header = visible.match(/<header[^>]*>(.*?)<\/header>/s)[1];
   assert.match(header, /<img[^>]*alt=""[^>]*src="\/brand\/kohinoor-emblem\.webp"/);
   assert.match(header, /href="#top"/);
