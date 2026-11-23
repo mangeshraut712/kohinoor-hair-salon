@@ -12,7 +12,7 @@ const mime = {
 };
 
 createServer((req, res) => {
-  if (!['GET', 'HEAD'].includes(req.method)) { res.writeHead(405).end(); return; }
+  if (!['GET', 'HEAD'].includes(req.method)) { res.writeHead(405, { Allow: 'GET, HEAD' }).end(); return; }
   let pathname;
   try { pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname); }
   catch { res.writeHead(400).end(); return; }

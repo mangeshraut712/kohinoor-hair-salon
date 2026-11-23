@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Small-business static website for The Kohinoor AC Salon (Kohinoor Hair Salon) at Shivaji Chowk, Pimple Nilakh, Pune.",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "npm run build:cloudflare",

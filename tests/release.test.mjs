@@ -81,3 +81,10 @@ test('approved business identity, address, phone and hours agree with the page',
     closes: '22:00',
   }]);
 });
+
+test('missing-page metadata is distinct from the salon homepage', () => {
+  const missing = read('404.html');
+  assert.match(missing, /<title>Page not found/);
+  assert.match(missing, /name="robots" content="noindex/);
+  assert.doesNotMatch(missing, /rel="canonical"|type="application\/ld\+json"/);
+});

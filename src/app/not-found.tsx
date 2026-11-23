@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { SALON_INFO } from '@/data/salon';
 
+export const metadata = { title: 'Page not found | The Kohinoor AC Salon' };
+
 export default function NotFound() {
   return (
     <main className="mx-auto flex min-h-screen max-w-2xl flex-col justify-center px-5 py-12">

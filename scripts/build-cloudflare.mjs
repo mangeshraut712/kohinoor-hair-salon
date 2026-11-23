@@ -22,8 +22,8 @@ try {
   process.exit(1);
 }
 
-if (siteUrl.protocol !== 'https:' || siteUrl.pathname !== '/' || siteUrl.search || siteUrl.hash) {
-  console.error('CLOUDFLARE_SITE_URL must be an HTTPS origin with no path, query, or fragment.');
+if (siteUrl.protocol !== 'https:' || siteUrl.username || siteUrl.password || siteUrl.pathname !== '/' || siteUrl.search || siteUrl.hash) {
+  console.error('CLOUDFLARE_SITE_URL must be an HTTPS origin with no credentials, path, query, or fragment.');
   process.exit(1);
 }
 
