@@ -1,4 +1,4 @@
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle, Phone } from 'lucide-react';
 import { SALON_INFO } from '@/data/salon';
 
 export function ShopContact() {
@@ -8,11 +8,26 @@ export function ShopContact() {
         <div>
           <p className="eyebrow">Before you visit</p>
           <h2 id="appointment-title" className="mt-2 text-3xl font-bold text-oxblood md:text-4xl">Ask the shop</h2>
-          <p className="mt-3 max-w-xl text-muted">Message the salon on Instagram to check hours, prices or availability. The shop can confirm a time with you directly.</p>
+          <p className="mt-3 max-w-xl text-muted">Call or message the salon about services, prices, or availability. The shop can confirm a time with you directly.</p>
+          <dl className="mt-5 space-y-2 text-sm" aria-label="Opening hours">
+            <div className="flex flex-wrap gap-x-2">
+              <dt className="font-semibold">{SALON_INFO.hours.openDaysLabel}</dt>
+              <dd>{SALON_INFO.hours.display}</dd>
+            </div>
+            <div className="flex gap-x-2">
+              <dt className="font-semibold">{SALON_INFO.hours.closedDay}</dt>
+              <dd>Closed</dd>
+            </div>
+          </dl>
         </div>
-        <a href={SALON_INFO.instagram.url} target="_blank" rel="noopener noreferrer" className="btn btn-solid">
-          <MessageCircle size={18} aria-hidden="true" /> Open shop Instagram
-        </a>
+        <div className="flex flex-col gap-3 sm:items-start md:items-stretch">
+          <a href={`tel:${SALON_INFO.phone}`} className="btn btn-solid">
+            <Phone size={18} aria-hidden="true" /> Call {SALON_INFO.displayPhone}
+          </a>
+          <a href={SALON_INFO.instagram.url} target="_blank" rel="noopener noreferrer" className="btn btn-line">
+            <MessageCircle size={18} aria-hidden="true" /> Open shop Instagram
+          </a>
+        </div>
       </div>
     </section>
   );

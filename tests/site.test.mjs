@@ -22,7 +22,7 @@ function walk(dir) {
 
 test('data: verified facts match CONTENT.md', () => {
   for (const fact of [
-    'Shivaji Chowk, near Bhavani Sweet Home, Sharda Colony',
+    'Shivaji Chowk, Near Bhavani Sweet Home, Main Road Gavthan',
     '18.571585',
     '73.793096',
     '411027',
@@ -36,7 +36,7 @@ test('data: verified facts match CONTENT.md', () => {
 });
 
 test('data: pending owner fields are null and prices are not invented', () => {
-  for (const f of ['phone', 'whatsapp', 'heroPhotoUrl']) {
+  for (const f of ['whatsapp', 'heroPhotoUrl']) {
     assert.match(salon, new RegExp(`${f}: null as`), `${f} must be null`);
   }
   assert.ok(!/priceInr: (?!null)/.test(salon.replace(/priceInr: number \| null/, '')), 'priceInr must be null');
@@ -61,18 +61,16 @@ test('JSON-LD: valid HairSalon with only verified fields', () => {
   assert.equal(ld.address.postalCode, '411027');
   assert.equal(ld.geo.latitude, 18.571585);
   assert.equal(ld.geo.longitude, 73.793096);
-  assert.equal('telephone' in ld, false, 'telephone must be absent while phone is null');
+  assert.equal(ld.telephone, '+919764048382');
   assert.equal('priceRange' in ld, false);
   assert.equal('founder' in ld, false, 'owner is not verified as founder');
 });
 
 test('content: no invented contact or price leaks in rendered HTML', () => {
   const h = html();
-  assert.ok(!/href="tel:/.test(h), 'tel: link present while phone is null');
   assert.ok(!/wa\.me\//.test(h), 'wa.me link present while whatsapp is null');
   const text = h.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ');
   assert.ok(!/₹\s?\d/.test(text), 'invented rupee price found');
-  assert.ok(!/(\+91|\b91)[\s-]?\d{10}\b/.test(text), 'phone-like number found');
   assert.ok(!/lorem ipsum|TODO/i.test(text));
   assert.ok(text.includes('Rate confirmed at shop'));
   assert.ok(text.includes('Open shop Instagram'));

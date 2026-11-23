@@ -3,6 +3,7 @@
 ## What this site does
 
 - **Get directions** opens the shop's [Google Maps pin](https://maps.app.goo.gl/141XQMZtooLVQQN29?g_st=ic) near Bhavani Sweet Home at Shivaji Chowk, Pimple Nilakh.
+- **Call** opens a dialer with the confirmed salon number. The site also displays regular hours: Sunday and Tuesday–Saturday, 7:30 AM–10:00 PM; Monday closed.
 - **Instagram** opens the [salon’s business profile](https://www.instagram.com/the_kohinoor_salon/). Customers can ask about a haircut, prices, or availability there. You reply and confirm a time yourself.
 - The site does not take bookings, hold time slots, or collect customer details. It does not add a phone number, hours, prices, or photos without your confirmation.
 

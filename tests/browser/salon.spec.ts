@@ -17,6 +17,9 @@ for (const viewport of dimensions) {
     const response = await page.goto('/');
     expect(response?.ok()).toBe(true);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('The Kohinoor');
+    await expect(page.locator('p[lang="mr"]')).toHaveText('द कोहिनूर एसी सलून (पिंपळे निलख)');
+    await expect(page.getByRole('link', { name: 'Call +91 97640 48382' })).toHaveAttribute('href', 'tel:+919764048382');
+    await expect(page.locator('#appointment dd').last()).toHaveText('Closed');
     await expect(page.getByRole('link', { name: 'Google Maps directions' })).toHaveAttribute('href', /maps\.app\.goo\.gl\/141XQMZtooLVQQN29/);
     await expect(page.getByRole('link', { name: 'Open shop Instagram' })).toHaveAttribute('href', 'https://www.instagram.com/the_kohinoor_salon/');
     await page.evaluate(() => document.fonts.ready.then(() => undefined));
@@ -24,6 +27,7 @@ for (const viewport of dimensions) {
     const dock = page.getByRole('navigation', { name: 'Quick actions' });
     if (viewport.width < 768) {
       await expect(dock).toBeVisible();
+      await expect(dock.getByRole('link', { name: 'Call' })).toHaveAttribute('href', 'tel:+919764048382');
       await expect(dock.getByRole('link', { name: 'Directions' })).toBeInViewport();
     } else {
       await expect(dock).toBeHidden();

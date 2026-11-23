@@ -1,5 +1,5 @@
 /**
- * Single source of truth for business facts. Mirrors CONTENT.md line for line.
+ * Single source of truth for business facts. Documented in docs/CONTENT.md.
  * Fields typed `null` are pending owner confirmation (TODO-for-owner) and
  * must be handled gracefully in the UI.
  */
@@ -8,21 +8,31 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://kohinoor-ha
 
 export const SALON_INFO = {
   name: 'The Kohinoor AC Salon',
+  listingName: 'The Kohinoor AC Salon (Pimple Nilakh)',
+  marathiName: 'द कोहिनूर एसी सलून (पिंपळे निलख)',
   googleListingName: 'The Kohinoor Ac salon',
   category: 'Hair Salon',
   tagline: 'Hair | Skin',
   address: {
-    street: 'Shivaji Chowk, near Bhavani Sweet Home, Sharda Colony',
+    street: 'Shivaji Chowk, Near Bhavani Sweet Home, Main Road Gavthan',
     locality: 'Pimple Nilakh',
     city: 'Pimpri-Chinchwad, Pune',
     region: 'Maharashtra',
     postalCode: '411027',
     country: 'IN',
-    full: 'Shivaji Chowk, near Bhavani Sweet Home, Sharda Colony, Pimple Nilakh, Pimpri-Chinchwad, Pune, Maharashtra 411027, India',
+    full: 'Shivaji Chowk, Near Bhavani Sweet Home, Main Road Gavthan, Pimple Nilakh, Pimpri-Chinchwad, Pune - 411027, Maharashtra',
   },
   geo: { latitude: 18.571585, longitude: 73.793096 },
-  /** TODO-for-owner: shop phone number (digits with country code, e.g. 91XXXXXXXXXX). */
-  phone: null as string | null,
+  phone: '+919764048382',
+  displayPhone: '+91 97640 48382',
+  hours: {
+    openDays: ['Sunday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    openDaysLabel: 'Sunday and Tuesday–Saturday',
+    closedDay: 'Monday',
+    opens: '07:30',
+    closes: '22:00',
+    display: '7:30 AM–10:00 PM',
+  },
   /** TODO-for-owner: shop WhatsApp number (digits with country code). */
   whatsapp: null as string | null,
   /** TODO-for-owner: path under /public of Sagar's real, permitted shop photo. */
