@@ -26,6 +26,8 @@ A preview build supplies `noindex` metadata and a Cloudflare Pages response-head
 
 ## Publish and roll back
 
+Vercel Git deployments from `main` are paused in `vercel.json`. Merging code does not intentionally replace the existing live site. Resume automatic production builds only after the owner approves and the hosting plan permits the salon website.
+
 1. Follow the [release plan](RELEASE.md) and use the existing Kohinoor project on the selected host. Confirm the plan permits a public business site. Confirm its production branch, build settings and access policy before merging or publishing: a Git-connected project can auto-deploy on push. Pin Node.js 22 to mirror CI. Never promote a `KOHINOOR_PREVIEW=1` artifact.
 2. Publish the tested production export, verify the live smoke checks, and record its commit, hostname, deployment ID and previous healthy production ID. Keep a copy of that exact tested export. Do not announce a launch until these checks pass.
 3. If the release breaks, roll back to the recorded healthy production deployment, then repeat the smoke checks and record the outcome. A preview is not a rollback target. For a first production launch, agree on a fallback before publishing because there may be no prior healthy deployment.
