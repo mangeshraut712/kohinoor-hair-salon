@@ -8,3 +8,5 @@
 6. Maintenance: update only verified hours, phone, rates and owner-authorized photographs. Re-run the same gates before deploying. After the first launch, record a prior healthy deployment ID for immediate rollback.
 
 From a tested checkout of `main`, run `npx wrangler@4 pages deploy out-cloudflare --project-name kohinoor-hair-salon --branch main` to publish the production export.
+
+The former GitHub Pages preview uses the redirect in `docs/index.html` on `main`. If the public hostname changes, update this redirect and the repository’s About link together.

@@ -19,6 +19,8 @@
   <a href="https://github.com/mangeshraut712/kohinoor-hair-salon/actions/workflows/ci.yml"><img src="https://github.com/mangeshraut712/kohinoor-hair-salon/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status on main"></a>
 </p>
 
+[![Kohinoor homepage showing the salon introduction, directions and opening hours beside a haircut photograph](docs/homepage.webp)](https://kohinoor-hair-salon.pages.dev/)
+
 ## Visit Kohinoor
 
 Kohinoor is a men’s salon at Shivaji Chowk in Pimple Nilakh. The website makes the essentials easy to find on a phone: what the salon offers, when it’s open, where to go, and how to ask the shop about availability or prices.
