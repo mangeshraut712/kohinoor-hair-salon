@@ -39,8 +39,9 @@ Visit [Kashish Beauty Parlour & Training Center](https://mangeshraut712.github.i
 
 | Area | What’s in the repository |
 | --- | --- |
-| **Shop identity** | Cream-and-oxblood shop-sign design, the supplied scissor-K logo, and the Marathi shop name |
+| **Shop identity** | Cream-and-oxblood shop-sign design, the supplied scissor-K logo, the Marathi shop name, and an opening-hours panel |
 | **Service board** | Filterable cards for hair, beard and skin; no unconfirmed prices or online booking |
+| **Instagram** | The salon’s official handle links directly to its cuts and grooming reels. |
 | **Mobile shortcuts** | Directions and Call stay close at hand. The menu scrolls to each section and supports keyboard navigation. |
 | **Local search** | Business name, address, hours and phone in structured data, plus a canonical URL, sitemap and robots file |
 | **Privacy** | No customer account, embedded map, analytics, or booking form. Calling, Maps and Instagram open separately. |

@@ -21,9 +21,10 @@ export function LocationAndDirections() {
           </div>
         </div>
         <div className="border border-oxblood-line bg-cream p-6 md:self-center">
-          <p className="eyebrow">Look for</p>
+          <p className="eyebrow">Nearby landmark</p>
           <p className="mt-2 font-display text-2xl font-bold text-oxblood">Bhavani Sweet Home</p>
           <p className="mt-2 text-muted">The salon is near this Shivaji Chowk landmark on Main Road Gavthan.</p>
+          <a href={SALON_INFO.google.listingUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block font-semibold text-oxblood underline underline-offset-4">View the Google business profile</a>
         </div>
       </div>
     </section>

@@ -11,9 +11,9 @@ export function ServiceBoard() {
   return (
     <section id="services" tabIndex={-1} aria-labelledby="services-title" className="border-b border-rule bg-parchment">
       <div className="mx-auto max-w-6xl px-4 py-14">
-        <p className="eyebrow">Service Board</p>
+        <p className="eyebrow">Services</p>
         <h2 id="services-title" className="mt-2 text-3xl font-bold text-oxblood md:text-4xl">
-          Hair | Skin
+          Hair, beard &amp; skin
         </h2>
         <p className="mt-3 max-w-2xl text-muted">
           Ask the shop about services and prices before you visit.
@@ -33,8 +33,8 @@ export function ServiceBoard() {
         </div>
         <div className="mt-8 grid [&>*]:min-w-0 gap-6 md:grid-cols-3">
           {categories.map((c) => (
-            <article key={c.id} className="border border-oxblood-line bg-cream p-5">
-              <h3 className="border-b-2 border-oxblood pb-2 text-xl font-bold uppercase text-oxblood">{c.title}</h3>
+            <article key={c.id} className="border-t-4 border-oxblood bg-cream p-6">
+              <h3 className="pb-2 font-display text-2xl font-bold text-oxblood">{c.title}</h3>
               <p className="mt-3 text-sm text-muted">{c.blurb}</p>
               <ul className="mt-4 divide-y divide-rule">
                 {c.items.map((i) => (

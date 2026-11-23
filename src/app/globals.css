@@ -127,3 +127,24 @@ a, button, input, select, textarea, summary {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+.shop-placard {
+  align-self: center;
+  background: var(--oxblood-dark);
+  color: var(--bg-cream);
+  padding: 0.65rem;
+  border-block: 4px double var(--bg-cream);
+}
+
+.shop-placard-inner {
+  border: 1px solid #bfa283;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  text-align: center;
+}
+
+@media (min-width: 48rem) {
+  .shop-placard {
+    margin-inline: 1rem;
+    box-shadow: 0.5rem 0.5rem 0 var(--bg-parchment);
+  }
+}
