@@ -1,10 +1,12 @@
+import siteOrigin from './site-origin.json';
+
 /**
  * Single source of truth for business facts. Documented in docs/CONTENT.md.
  * Fields typed `null` are pending owner confirmation (TODO-for-owner) and
  * must be handled gracefully in the UI.
  */
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://kohinoor-hair-salon.pages.dev';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || siteOrigin.production;
 
 export const SALON_INFO = {
   name: 'The Kohinoor AC Salon',

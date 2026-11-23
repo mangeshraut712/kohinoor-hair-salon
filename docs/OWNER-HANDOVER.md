@@ -9,7 +9,7 @@
 
 ## Before sharing a public link
 
-Open the approved site on a phone. Tap Directions and check that it opens the correct shop pin. Tap Instagram and verify it opens the business profile. Tap Call to verify the dialer shows the shop number without placing a call. No test message needs to be sent. A file or a private preview isn’t the public website; use the address the maintainer confirms after launch.
+Open the approved site on a phone. Tap Directions and check that it opens the correct shop pin. Tap Instagram and verify it opens the business profile. Tap Call to verify the dialer shows the shop number without placing a call. No test message needs to be sent. A file or a private preview isn’t the public website; the selected public address is [kohinoorsalon.vercel.app](https://kohinoorsalon.vercel.app/). It currently serves the previous release. Confirm the new logo, hours and phone are live before sharing it with customers.
 
 ## Making updates
 

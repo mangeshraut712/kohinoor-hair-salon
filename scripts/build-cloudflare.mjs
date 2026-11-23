@@ -1,10 +1,11 @@
-import { cpSync, existsSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, rmSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const projectRoot = process.cwd();
 const cloudflareOutput = join(projectRoot, 'out-cloudflare');
-const requestedUrl = process.env.CLOUDFLARE_SITE_URL || 'https://kohinoor-hair-salon.pages.dev';
+const { production } = JSON.parse(readFileSync(new URL('../src/data/site-origin.json', import.meta.url), 'utf8'));
+const requestedUrl = process.env.CLOUDFLARE_SITE_URL || production;
 
 let siteUrl;
 try {

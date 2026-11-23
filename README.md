@@ -2,6 +2,8 @@
 
 A mobile-first site that helps customers find the salon and message its business Instagram. The cream-and-oxblood design takes its cues from shop signage. There are no accounts, embedded maps, analytics, or booking forms.
 
+**Selected production address (older build currently live):** [kohinoorsalon.vercel.app](https://kohinoorsalon.vercel.app/)
+
 ## Start here
 
 - [Shop owner handover](docs/OWNER-HANDOVER.md): what the site does, what to check, and how to request changes.
