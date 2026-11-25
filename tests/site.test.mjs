@@ -174,6 +174,8 @@ test('whatsapp.ts: normalizeNumber, buildWhatsAppLink, buildTelLink', async () =
   assert.equal(buildTelLink(undefined), null);
   assert.equal(buildTelLink('9876543210'), null);
   assert.equal(buildTelLink('+91 98765 43210'), 'tel:+919876543210');
+  assert.equal(buildWhatsAppLink('09876543210', 'hi'), null, 'trunk-prefixed 11-digit numbers are not a country code');
+  assert.equal(buildTelLink('0 98765 43210'), null);
 });
 
 test('review fixes: validation, Escape close, icon, readonly data', () => {

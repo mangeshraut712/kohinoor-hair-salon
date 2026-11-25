@@ -14,10 +14,10 @@ export function normalizeNumber(raw: string | null | undefined): string | null {
   return digits.length >= 10 ? digits : null;
 }
 
-/** wa.me and tel:+ need an explicit country code, so bare 10-digit numbers are rejected (need 11+ digits, e.g. 91XXXXXXXXXX). */
+/** wa.me and tel:+ need an explicit country code, so bare 10-digit numbers and trunk-prefixed numbers (0 + 10 digits) are rejected. Accept 11+ digits that do not start with 0 (e.g. 91XXXXXXXXXX). */
 function normalizeInternational(raw: string | null | undefined): string | null {
   const n = normalizeNumber(raw);
-  return n && n.length >= 11 ? n : null;
+  return n && /^[1-9]\d{10,}$/.test(n) ? n : null;
 }
 
 export function buildInquiryMessage(input: InquiryInput): string {
